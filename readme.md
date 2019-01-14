@@ -16,9 +16,7 @@ Git 재시작 : `21.12.08 (이전 repo 삭제)
 | <b> MariaDB </b> |  -  |
 
 ## 2. Code flow
-
 ![flow.jpg](./github/flow.jpg)
 
 ## 3. ERD
-
-![erd.jpg](./github/erd.jpg)
+![ERD.jpg](./github/ERD.jpg)
