@@ -13,6 +13,7 @@ const categoryController = {
             c_memo: req.body.categoryMemo || '',
         };
 
+        console.log("come in")
         const checkOptions: object = {
             c_name: {
                 type:               'string',
@@ -28,10 +29,10 @@ const categoryController = {
         }
 
         if(chkData(bodyData, checkOptions) === false) {
-            console.log("PARAM ERR")
+            return next('API002');
         };
 
-        console.log("a")
+        console.log("ㅒㅏ")
         return;
     },
 }
