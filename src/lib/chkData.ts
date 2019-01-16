@@ -10,8 +10,9 @@ function chkData(bodyData: any, checkOptions: any) {
     const chkArr: Array<string> = Object.keys(checkOptions);
 
     for(const key of chkArr) {
-        console.log(key)
         const selected = checkOptions[key];
+
+        if(bodyData[key] === undefined) return true;
 
         // Type check ==> Type 있으면 
         if(selected.hasOwnProperty('type') === true) {
@@ -46,7 +47,6 @@ function chkData(bodyData: any, checkOptions: any) {
 
             // 특수문자 허용 여부 체크
             if(selected.hasOwnProperty('blok_special') === true) {
-                console.log("ㅁㅁ:", bodyData[key])
                 if(specialCharCheck(bodyData[key]) === false) {
                     return false;
                 }
@@ -109,7 +109,5 @@ function specialCharCheck(str: string) {
     }
     return true;
 }
-
-
 
 export default chkData;

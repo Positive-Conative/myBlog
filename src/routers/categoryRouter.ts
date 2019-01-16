@@ -6,8 +6,8 @@ import categoryController from '../controllers/categoryController';
 // 카테고리 추가
 router.post('/add', categoryController.addCategory);
 
-// // 카테고리 정보 확인
-// router.post('/check', groupController.getGroupInfo);
+// 카테고리 정보 확인
+router.post('/check', categoryController.getCategoryInfo);
 
 // // 카테고리 상태 변경
 // router.delete('/state', groupController.setGroupFlag);

@@ -55,6 +55,11 @@ module.exports = {
         "httpStatus": "404",
         "clientMsg": "해당 게시글이 존재하지 않습니다."
     },
+    "API203": {
+        "code": "203",
+        "httpStatus": "404",
+        "clientMsg": "해당 카테고리가 존재하지 않습니다."
+    },
 
     // Hide data
     "API300": {
