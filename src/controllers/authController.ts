@@ -14,11 +14,11 @@ const authController = {
             u_name: req.body.userName,
             u_nickname: req.body.userNick,
             u_flag: 0,
-            u_permission: 'Defaults',
+            u_permission: 'default',
         }
         
         // 파라미터 Check
-        if(chkChar(bodyData) === false) {
+        if(chkChar(bodyData) === false || bodyData.u_email.indexOf('@') === -1) {
             return next('API002');
         }
 
@@ -30,13 +30,6 @@ const authController = {
 
         await aRepo.addUser(bodyData);
         res.json({"message": "처리 완료!"});
-
-        // try{
-            
-        // } catch(err) {
-        //     // console.log(err);
-        //     next('API990');
-        // }
     },
 
     getUserInfo: async(req: Request, res: Response, next: NextFunction) => {
@@ -61,13 +54,6 @@ const authController = {
 
 
         res.json({result, "message": "정상적으로 조회되었습니다."});
-        // try{
-            
-        // } catch(err) {
-        //     // console.log(err);
-        //     next('API990');
-        //     return;
-        // }
     },
  
     setUserFlag: async (req: Request, res: Response, next: NextFunction) => {
@@ -81,15 +67,7 @@ const authController = {
         }
 
         await aRepo.modifyUserFlag(bodyData);
-        res.json({"message": "정상적으로 처리되었습니다."});
-        // try{
-            
-        // } catch(err) {
-        //     console.log(err);
-        //     next('API990');
-        //     return;
-        // }
-        
+        res.json({"message": "정상적으로 처리되었습니다."});        
     },
 
     modifyUser: async (req: Request, res: Response, next: NextFunction) => {
@@ -101,7 +79,7 @@ const authController = {
         }
 
         // 파라미터 Check
-        if(chkChar(bodyData) === false) {
+        if(chkChar(bodyData) === false || bodyData.u_email.indexOf('@') === -1) {
             return next('API002');
         }
 
@@ -117,13 +95,6 @@ const authController = {
         
         await aRepo.modifyUserInfo(bodyData);
         res.json({"message": "정상적으로 처리되었습니다."});
-        // try{
-            
-        // } catch(err) {
-        //     console.log(err);
-        //     next('API990');
-        //     return;
-        // }
         
     },
 }

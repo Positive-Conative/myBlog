@@ -6,7 +6,7 @@ import authController from '../controllers/authController';
 
 
 // 회원가입
-router.post('/signUp', authController.addUser);
+router.post('/signup', authController.addUser);
 
 // 가입된 유저 확인
 router.post('/check', authController.getUserInfo);
