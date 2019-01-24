@@ -6,7 +6,8 @@ import { addCategoryDto, categoryKeyDto, categoryVarOpt } from '../interfaces/ca
 
 const cRepo = new categoryRepo();
 const categoryController = {
-    // 그룹 추가
+
+    // 카테고리 추가
     addCategory : async (req: Request, res: Response, next: NextFunction) => {
         const bodyData: addCategoryDto = {
             c_name: req.body.categoryName || '',
@@ -17,6 +18,11 @@ const categoryController = {
         if(chkData(bodyData, categoryVarOpt) === false) {
             return next('API002');
         };
+
+        // 중복 여부 확인
+        if(await cRepo.findCategoryOne(bodyData)) {
+            return next('API102');
+        }
 
         // ORM 실행
         await cRepo.addCategory(bodyData);
@@ -40,8 +46,16 @@ const categoryController = {
             return next('API203');
         }
 
-        return res.json({"message": "처리 완료!", result});
-    }
+        return res.json({"message": "조회 완료!", result});
+    },
+
+    getCategoryList : async (req: Request, res: Response, next: NextFunction) => {
+        // ORM 실행 
+        const result = await cRepo.findCategoryAll();
+
+        return res.json({"message": "조회 완료!", result});
+    },
+
 }
 
 

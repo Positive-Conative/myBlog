@@ -38,6 +38,11 @@ module.exports = {
         "httpStatus": "403",
         "clientMsg": "해당 그룹이 이미 존재합니다."
     },
+    "API102": {
+        "code": "102",
+        "httpStatus": "403",
+        "clientMsg": "해당 카테고리가 이미 존재합니다."
+    },
 
     // Data does not exist
     "API200": {
