@@ -1,6 +1,7 @@
 import express from 'express'
 import indexRouter from "./routers/indexRouter";
 import authRouter from "./routers/authRouter";
+import categoryRouter from "./routers/categoryRouter";
 import groupRouter from "./routers/groupRouter";
 import boardRouter from "./routers/boardRouter";
 
@@ -18,6 +19,7 @@ app.use(express.urlencoded({extended:true}));
 
 app.use("/", indexRouter);
 app.use("/auth", authRouter);
+app.use("/category", categoryRouter);
 app.use("/group", groupRouter);
 app.use("/board", boardRouter);
 
