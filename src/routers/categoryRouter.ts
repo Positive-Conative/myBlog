@@ -15,7 +15,11 @@ router.post('/all', categoryController.getCategoryList);
 // // 카테고리 상태 변경
 // router.delete('/state', groupController.setGroupFlag);
 
-// // 유저 정보 수정
-// router.put('/modify', groupController.modifyGroup);
+// 카테고리 정보 수정
+router.put('/modify', categoryController.modifyCategory);
+
+// 카테고리 정보 삭제
+router.delete('/delete', categoryController.deleteCategory);
+
 
 export default router; 
