@@ -2,7 +2,12 @@ import { Request, Response, NextFunction } from 'express';
 import { categoryRepo } from '../models/repository/categoryRepo';
 import chkData from '../lib/chkData';
 
-import { addCategoryDto, categoryKeyDto, categoryVarOpt } from '../interfaces/categoryDto';
+import { 
+    addCategoryDto,
+    modifyCategoryDto,
+    categoryKeyDto,
+    categoryVarOpt
+ } from '../interfaces/categoryDto';
 
 const cRepo = new categoryRepo();
 const categoryController = {
@@ -20,7 +25,7 @@ const categoryController = {
         };
 
         // 중복 여부 확인
-        if(await cRepo.findCategoryOne(bodyData)) {
+        if(await cRepo.findCategoryOne(bodyData.c_name)) {
             return next('API102');
         }
 
@@ -41,7 +46,7 @@ const categoryController = {
         };
 
         // ORM 실행 - 존재 여부 확인
-        const result = await cRepo.findCategoryOne(bodyData);
+        const result = await cRepo.findCategoryOne(bodyData.c_name);
         if(result === undefined) {  
             return next('API203');
         }
@@ -59,9 +64,10 @@ const categoryController = {
 
     // 수정
     modifyCategory: async(req: Request, res: Response, next: NextFunction) => {
-        const bodyData: addCategoryDto = {
-            c_name: req.body.categoryName || '',
-            c_memo: req.body.categoryMemo || '',
+        const bodyData: modifyCategoryDto = {
+            c_name:     req.body.categoryName || '',
+            c_memo:     req.body.categoryMemo || '',
+            c_newName:  req.body.newName || '',
         };
 
         // 파라미터 체크
@@ -70,8 +76,15 @@ const categoryController = {
         };
 
         // 존재 여부 확인
-        if(! await cRepo.findCategoryOne(bodyData)) {
+        if(! await cRepo.findCategoryOne(bodyData.c_name)) {
             return next('API203');
+        }
+
+        // 새로운 이름으로 변경하기로 했다면, 중복 없는지 확인
+        if(bodyData.c_name !== bodyData.c_newName) {
+            if(await cRepo.findCategoryOne(bodyData.c_newName)) {
+                return next('API102');
+            }
         }
 
         // ORM 실행 
@@ -91,7 +104,7 @@ const categoryController = {
         };
 
         // ORM 실행 - 존재 여부 확인
-        const result = await cRepo.findCategoryOne(bodyData);
+        const result = await cRepo.findCategoryOne(bodyData.c_name);
         if(result === undefined) {  
             return next('API203');
         }
