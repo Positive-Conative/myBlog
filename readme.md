@@ -15,6 +15,10 @@ Git 재시작 : `21.12.08 (이전 repo 삭제)
 | <b> Vue </b> |  -  |
 | <b> MariaDB </b> |  -  |
 
-## 2. ERD
+## 2. Code flow
 
-![MyWeb.jpg](./github/ERD.jpg)
+![flow.jpg](./github/flow.jpg)
+
+## 3. ERD
+
+![erd.jpg](./github/erd.jpg)
