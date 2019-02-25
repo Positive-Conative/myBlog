@@ -1,13 +1,14 @@
 export interface addGroupDto {
-    c_name?: string;
-    g_name:  string;
-    g_memo?: string;
-    g_flag:  number;
+    category:   object;
+    g_name:     string;
+    g_memo?:    string;
+    g_flag:     number;
 }
 
 export const groupVarOpt = {
-    c_name: {
-        type:           'string',
+    category: {
+        type:           'mapdata',
+        key:            'c_name',
         min_size:       2,
         max_size:       15,
         blok_special:   true

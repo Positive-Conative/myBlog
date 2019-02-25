@@ -10,14 +10,18 @@ function chkData(bodyData: any, checkOptions: any) {
     const chkArr: Array<string> = Object.keys(checkOptions);
 
     for(const key of chkArr) {
-        const selected = checkOptions[key]; 
+        let selected = checkOptions[key]; 
 
         // bodyData[key] --> 비교 당할 데이터
-        if(bodyData[key] === undefined) return true;
+        if(bodyData[key] === undefined) return true;    // 없는거니까 그냥 넘김
 
-
-        // Type check ==> Type 있으면 
+        // Type check ==> Type 존재?
         if(selected.hasOwnProperty('type') === true) {
+
+            // mapdata 형식
+            if(selected.type === 'mapdata') {
+                selected = bodyData[key][selected.key];
+            }
 
             // Min size check
             if(selected.hasOwnProperty('min_size') === true) {

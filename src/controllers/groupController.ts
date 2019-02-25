@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
+import { categoryRepo } from '../models/repository/categoryRepo';
 import { groupRepo } from '../models/repository/groupRepo';
 import chkData from '../lib/chkData';
 
@@ -7,15 +8,17 @@ import {
     groupVarOpt
  } from '../interfaces/groupDto';
 
+const cRepo = new categoryRepo();
 const gRepo = new groupRepo();
 const groupController = {
+
     // 그룹 추가
     addGroup : async (req: Request, res: Response, next: NextFunction) => {
         const bodyData: addGroupDto = {
-            c_name: req.body.categoryName || '',
-            g_name: req.body.groupName,
-            g_memo: req.body.groupMemo,
-            g_flag: 0
+            category:   { c_name: req.body.categoryName || '' },
+            g_name:     req.body.groupName,
+            g_memo:     req.body.groupMemo,
+            g_flag:     0
         };
 
         // 파라미터 Check
@@ -23,13 +26,18 @@ const groupController = {
             return next('API002');
         }
 
+        // 카테고리 존재 여부 확인
+        // if(! await cRepo.findCategoryOne(bodyData.c_name)) {
+        //     return next('API203');
+        // }
+
         // 그룹 중복 여부 확인
         if(await gRepo.findGroupOne(bodyData.g_name)) {
             return next('API101');
         }
 
-        // await gRepo.addGroup(bodyData);
-        // res.json({"message": "처리 완료!"});
+        await gRepo.addGroup(bodyData);
+        res.json({"message": "처리 완료!"});
     },
 
     // getGroupInfo: async(req: Request, res: Response, next: NextFunction) => {
