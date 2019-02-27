@@ -6,7 +6,7 @@ import chkData from '../lib/chkData';
 import {
     addGroupDto,
     groupKeyDto,
-    modifyFlagDto,
+    modifyGroupDto,
     groupVarOpt
 } from '../interfaces/groupDto';
 
@@ -34,7 +34,7 @@ const groupController = {
         }
 
         // 그룹 중복 여부 확인
-        if (await gRepo.findGroupOne(bodyData.g_name)) {
+        if (await gRepo.findGroupOne(bodyData)) {
             return next('API101');
         }
 
@@ -53,7 +53,7 @@ const groupController = {
         }
 
         // 그룹 찾을 수 있는지 확인
-        const result = await gRepo.findGroupOne(bodyData.g_name);
+        const result = await gRepo.findGroupOne(bodyData);
         if (result === undefined) {
             return next('API201');
         }
@@ -79,33 +79,32 @@ const groupController = {
         }
 
         // 그룹 찾을 수 있는지 확인
-        const result = await gRepo.findGroupOne(bodyData.g_name);
+        const result = await gRepo.findGroupOne(bodyData);
         if (result === undefined) {
             return next('API201');
         }
 
-        await gRepo.modifyGroupFlag(bodyData.g_name);
+        await gRepo.modifyGroupFlag(bodyData);
         res.json({ "message": "정상적으로 처리되었습니다." });
     },
 
     // modifyGroup: async(req: Request, res: Response, next: NextFunction) => {
-    //     const bodyData: addDto = {
+    //     const bodyData: modifyGroupDto = {
+    //         category: { "c_name": req.body.categoryName || '' },
     //         g_name: req.body.groupName,
     //         g_memo: req.body.groupMemo,
-    //         g_flag: req.body.state || -1,
-    //     }
+    //     };
 
     //     // 잘못된 파라미터?
-    //     if(chkChar(bodyData) === false || bodyData.g_flag in [0, 1, 2] === false ) {
+    //     if (chkData(bodyData, groupVarOpt) === false) {
     //         return next('API002');
     //     }
 
     //     // 그룹 찾을 수 있는지 확인
-    //     const result = await gRepo.findGroupOne(bodyData.g_name);
-    //     if(result === undefined) {  
+    //     const result = await gRepo.findGroupOne(bodyData);
+    //     if (result === undefined) {
     //         return next('API201');
     //     }
-
 
     //     await gRepo.modifyGroupInfo(bodyData);
     //     res.json({"message": "정상적으로 처리되었습니다."});

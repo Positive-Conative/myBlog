@@ -5,11 +5,11 @@ export interface addGroupDto {
     g_flag:     number;
 }
 
-export interface modifyFlagDto {
+export interface modifyGroupDto {
+    category:   { c_name: string };
     g_name:     string;
-    g_flag:     number;
+    g_memo:     string;
 }
-
 
 export interface groupKeyDto {
     g_name:     string;
