@@ -9,11 +9,8 @@ router.post('/add', categoryController.addCategory);
 // 카테고리 정보 확인 - 1개
 router.post('/one', categoryController.getCategoryInfo);
 
-// 카테고리 정보 확인 - 전부
+// 카테고리 확인 - 전체
 router.post('/all', categoryController.getCategoryList);
-
-// // 카테고리 상태 변경
-// router.delete('/state', groupController.setGroupFlag);
 
 // 카테고리 정보 수정
 router.put('/modify', categoryController.modifyCategory);

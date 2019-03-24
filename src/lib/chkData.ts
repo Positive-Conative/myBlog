@@ -10,9 +10,11 @@ function chkData(bodyData: any, checkOptions: any) {
     const chkArr: Array<string> = Object.keys(checkOptions);
 
     for(const key of chkArr) {
-        const selected = checkOptions[key];
+        const selected = checkOptions[key]; 
 
+        // bodyData[key] --> 비교 당할 데이터
         if(bodyData[key] === undefined) return true;
+
 
         // Type check ==> Type 있으면 
         if(selected.hasOwnProperty('type') === true) {
@@ -50,6 +52,13 @@ function chkData(bodyData: any, checkOptions: any) {
                 if(specialCharCheck(bodyData[key]) === false) {
                     return false;
                 }
+            }
+
+            // 꼭 포함해야 하는 것이 있나?
+            if(selected.hasOwnProperty('must_include') === true) {
+                if(bodyData[key] in [0, 1, 2] === false) {
+                    return false;
+                } 
             }
         }
     }

@@ -4,7 +4,7 @@ const router: Router = express.Router();
 import groupController from '../controllers/groupController';
 
 // 그룹 추가
-// router.post('/add', groupController.addGroup);
+router.post('/add', groupController.addGroup);
 
 // // 그룹 정보 확인
 // router.post('/check', groupController.getGroupInfo);

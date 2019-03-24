@@ -22,7 +22,7 @@ const categoryController = {
         // 파라미터 체크
         if(chkData(bodyData, categoryVarOpt) === false) {
             return next('API002');
-        };
+        }
 
         // 중복 여부 확인
         if(await cRepo.findCategoryOne(bodyData.c_name)) {
@@ -103,7 +103,7 @@ const categoryController = {
             return next('API002');
         };
 
-        // ORM 실행 - 존재 여부 확인
+        // ORM 실행 - 변경할 카테고리명이 이미 존재하는지 확인
         const result = await cRepo.findCategoryOne(bodyData.c_name);
         if(result === undefined) {  
             return next('API203');

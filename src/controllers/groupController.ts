@@ -1,32 +1,36 @@
 import { Request, Response, NextFunction } from 'express';
 import { groupRepo } from '../models/repository/groupRepo';
-import chkChar from '../lib/chkChar';
+import chkData from '../lib/chkData';
 
-import { addDto } from '../interfaces/groupDto';
+import { 
+    addGroupDto, 
+    groupVarOpt
+ } from '../interfaces/groupDto';
 
 const gRepo = new groupRepo();
 const groupController = {
     // 그룹 추가
-    // addGroup : async (req: Request, res: Response, next: NextFunction) => {
-    //     const bodyData: addDto = {
-    //         g_name: req.body.groupName,
-    //         g_memo: req.body.groupMemo,
-    //         g_flag: 0
-    //     }
+    addGroup : async (req: Request, res: Response, next: NextFunction) => {
+        const bodyData: addGroupDto = {
+            c_name: req.body.categoryName || '',
+            g_name: req.body.groupName,
+            g_memo: req.body.groupMemo,
+            g_flag: 0
+        };
 
-    //     // 파라미터 Check
-    //     if(chkChar(bodyData) === false) {
-    //         return next('API002');
-    //     }
+        // 파라미터 Check
+        if(chkData(bodyData, groupVarOpt) === false) {
+            return next('API002');
+        }
 
-    //     // 그룹 중복 여부 확인
-    //     if(await gRepo.findGroupOne(bodyData.g_name)) {
-    //         return next('API101');
-    //     }
+        // 그룹 중복 여부 확인
+        if(await gRepo.findGroupOne(bodyData.g_name)) {
+            return next('API101');
+        }
 
-    //     await gRepo.addGroup(bodyData);
-    //     res.json({"message": "처리 완료!"});
-    // },
+        // await gRepo.addGroup(bodyData);
+        // res.json({"message": "처리 완료!"});
+    },
 
     // getGroupInfo: async(req: Request, res: Response, next: NextFunction) => {
     //     const g_name = req.body.groupName;

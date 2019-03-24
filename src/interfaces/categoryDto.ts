@@ -20,13 +20,13 @@ export const categoryVarOpt = {
     },
     c_name: {
         type:           'string',
-        min_size:       5,
+        min_size:       2,
         max_size:       20,
         blok_special:   true
     },
     c_newName: {
         type:           'string',
-        min_size:       5,
+        min_size:       2,
         max_size:       20,
         blok_special:   true
     },
