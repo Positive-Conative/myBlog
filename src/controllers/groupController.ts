@@ -15,7 +15,7 @@ const groupController = {
     // 그룹 추가
     addGroup : async (req: Request, res: Response, next: NextFunction) => {
         const bodyData: addGroupDto = {
-            category:   { c_name: req.body.categoryName || '' },
+            category:   { "c_name": req.body.categoryName || '' },
             g_name:     req.body.groupName,
             g_memo:     req.body.groupMemo,
             g_flag:     0
@@ -27,9 +27,9 @@ const groupController = {
         }
 
         // 카테고리 존재 여부 확인
-        // if(! await cRepo.findCategoryOne(bodyData.c_name)) {
-        //     return next('API203');
-        // }
+        if(! await cRepo.findCategoryOne(bodyData.category.c_name)) {
+            return next('API203');
+        }
 
         // 그룹 중복 여부 확인
         if(await gRepo.findGroupOne(bodyData.g_name)) {

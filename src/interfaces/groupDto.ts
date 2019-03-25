@@ -1,5 +1,5 @@
 export interface addGroupDto {
-    category:   object;
+    category:   { c_name: string };
     g_name:     string;
     g_memo?:    string;
     g_flag:     number;
