@@ -5,6 +5,10 @@ export interface addGroupDto {
     g_flag:     number;
 }
 
+export interface groupKeyDto {
+    g_name:     string;
+}
+
 export const groupVarOpt = {
     category: {
         type:           'mapdata',

@@ -4,7 +4,8 @@ import { groupRepo } from '../models/repository/groupRepo';
 import chkData from '../lib/chkData';
 
 import { 
-    addGroupDto, 
+    addGroupDto,
+    groupKeyDto, 
     groupVarOpt
  } from '../interfaces/groupDto';
 
@@ -40,29 +41,31 @@ const groupController = {
         res.json({"message": "처리 완료!"});
     },
 
-    // getGroupInfo: async(req: Request, res: Response, next: NextFunction) => {
-    //     const g_name = req.body.groupName;
+    getGroupInfo: async(req: Request, res: Response, next: NextFunction) => {
+        const bodyData: groupKeyDto = {
+            g_name:     req.body.groupName,
+        };
 
-    //      // 잘못된 파라미터?
-    //     if(chkChar(g_name) === false) {
-    //         return next('API002');
-    //     }
+         // 잘못된 파라미터?
+         if(chkData(bodyData, groupVarOpt) === false) {
+            return next('API002');
+        }
 
-    //     // 그룹 찾을 수 있는지 확인
-    //     const result = await gRepo.findGroupOne(g_name);
-    //     if(result === undefined) {  
-    //         return next('API201');
-    //     }
+        // 그룹 찾을 수 있는지 확인
+        const result = await gRepo.findGroupOne(bodyData.g_name);
+        if(result === undefined) {  
+            return next('API201');
+        }
 
-    //     // 비공개 그룹인지 확인하고, 정상이라면 flag 지움 처리
-    //     if(result.flag === 1) {
-    //         return next('API301');
-    //     } else {
-    //         delete result.flag;
-    //     }
+        // 비공개 그룹인지 확인하고, 정상이라면 flag 지움 처리
+        if(result.flag === 1) {
+            return next('API301');
+        } else {
+            delete result.flag;
+        }
         
-    //     res.json({result, "message": "정상적으로 조회되었습니다."});
-    // },
+        res.json({result, "message": "정상적으로 조회되었습니다."});
+    },
 
     // setGroupFlag: async(req: Request, res: Response, next: NextFunction) => {
     //     const bodyData : addDto = {
