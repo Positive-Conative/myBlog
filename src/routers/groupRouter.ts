@@ -12,7 +12,7 @@ router.post('/one', groupController.getGroupInfo);
 // 그룹 상태 변경
 router.delete('/delete', groupController.setGroupFlag);
 
-// // 그룹 정보 수정
-// router.put('/modify', groupController.modifyGroup);
+// 그룹 정보 수정
+router.put('/modify', groupController.modifyGroup);
 
 export default router; 

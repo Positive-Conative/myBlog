@@ -25,7 +25,7 @@ const categoryController = {
         }
 
         // 중복 여부 확인
-        if(await cRepo.findCategoryOne(bodyData.c_name)) {
+        if(await cRepo.getCategoryOne(bodyData.c_name)) {
             return next('API102');
         }
 
@@ -46,7 +46,7 @@ const categoryController = {
         };
 
         // ORM 실행 - 존재 여부 확인
-        const result = await cRepo.findCategoryOne(bodyData.c_name);
+        const result = await cRepo.getCategoryOne(bodyData.c_name);
         if(result === undefined) {  
             return next('API203');
         }
@@ -57,7 +57,7 @@ const categoryController = {
     // 전체 조회
     getCategoryList : async (req: Request, res: Response, next: NextFunction) => {
         // ORM 실행 
-        const result = await cRepo.findCategoryAll();
+        const result = await cRepo.getCategoryAll();
 
         return res.json({"message": "조회 완료!", result});
     },
@@ -76,19 +76,19 @@ const categoryController = {
         };
 
         // 존재 여부 확인
-        if(! await cRepo.findCategoryOne(bodyData.c_name)) {
+        if(! await cRepo.getCategoryOne(bodyData.c_name)) {
             return next('API203');
         }
 
         // 새로운 이름으로 변경하기로 했다면, 중복 없는지 확인
         if(bodyData.c_name !== bodyData.c_newName) {
-            if(await cRepo.findCategoryOne(bodyData.c_newName)) {
+            if(await cRepo.getCategoryOne(bodyData.c_newName)) {
                 return next('API102');
             }
         }
 
         // ORM 실행 
-        await cRepo.altCategory(bodyData);
+        await cRepo.setCategory(bodyData);
         res.json({"message": "정상적으로 처리되었습니다."});
     },
 
@@ -104,7 +104,7 @@ const categoryController = {
         };
 
         // ORM 실행 - 변경할 카테고리명이 이미 존재하는지 확인
-        const result = await cRepo.findCategoryOne(bodyData.c_name);
+        const result = await cRepo.getCategoryOne(bodyData.c_name);
         if(result === undefined) {  
             return next('API203');
         }

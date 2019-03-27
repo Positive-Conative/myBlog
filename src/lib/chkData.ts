@@ -9,18 +9,18 @@
 function chkData(bodyData: any, checkOptions: any) {
     const chkArr: Array<string> = Object.keys(checkOptions);
 
-    for(const key of chkArr) {
-        let selected = checkOptions[key]; 
-
+    for(const checkItem of chkArr) {
         // bodyData[key] --> 비교 당할 데이터
-        if(bodyData[key] === undefined) return true;    // 없는거니까 그냥 넘김
+        let target = bodyData[checkItem];
+        if(target === undefined) return true;    // 없는거니까 그냥 넘김
 
+        let selected = checkOptions[checkItem]; 
         // Type check ==> Type 존재?
         if(selected.hasOwnProperty('type') === true) {
 
             // mapdata 형식
             if(selected.type === 'mapdata') {
-                selected = bodyData[key][selected.key];
+                target = target[checkOptions[checkItem].key];
             }
 
             // Min size check
@@ -28,7 +28,7 @@ function chkData(bodyData: any, checkOptions: any) {
                 const options = {
                     type:       selected.type, 
                     size:       selected.min_size,
-                    data:       bodyData[key],
+                    data:       target,
                     separator:  'min',
                 };
 
@@ -42,7 +42,7 @@ function chkData(bodyData: any, checkOptions: any) {
                 const options = {
                     type:       selected.type, 
                     size:       selected.max_size,
-                    data:       bodyData[key],
+                    data:       target,
                     separator:  'max',
                 };
 
@@ -53,14 +53,14 @@ function chkData(bodyData: any, checkOptions: any) {
 
             // 특수문자 허용 여부 체크
             if(selected.hasOwnProperty('blok_special') === true) {
-                if(specialCharCheck(bodyData[key]) === false) {
+                if(specialCharCheck(target) === false) {
                     return false;
                 }
             }
 
             // 꼭 포함해야 하는 것이 있나?
             if(selected.hasOwnProperty('must_include') === true) {
-                if(bodyData[key] in [0, 1, 2] === false) {
+                if(target in [0, 1, 2] === false) {
                     return false;
                 } 
             }
@@ -86,6 +86,7 @@ function intervalCheck(options: any) {
     let { data } = options;
     
     switch(type) {
+        case 'mapdata':
         case 'string':
             data = data.toString().length;
             break;

@@ -29,12 +29,12 @@ const groupController = {
         }
 
         // 카테고리 존재 여부 확인
-        if (! await cRepo.findCategoryOne(bodyData.category.c_name)) {
+        if (! await cRepo.getCategoryOne(bodyData.category.c_name)) {
             return next('API203');
         }
 
         // 그룹 중복 여부 확인
-        if (await gRepo.findGroupOne(bodyData)) {
+        if (await gRepo.getGroupOne(bodyData)) {
             return next('API101');
         }
 
@@ -53,7 +53,7 @@ const groupController = {
         }
 
         // 그룹 찾을 수 있는지 확인
-        const result = await gRepo.findGroupOne(bodyData);
+        const result = await gRepo.getGroupOne(bodyData);
         if (result === undefined) {
             return next('API201');
         }
@@ -79,36 +79,49 @@ const groupController = {
         }
 
         // 그룹 찾을 수 있는지 확인
-        const result = await gRepo.findGroupOne(bodyData);
-        if (result === undefined) {
+        if (await gRepo.getGroupOne(bodyData) === undefined) {
             return next('API201');
         }
 
-        await gRepo.modifyGroupFlag(bodyData);
+        await gRepo.setGroupFlag(bodyData);
         res.json({ "message": "정상적으로 처리되었습니다." });
     },
 
-    // modifyGroup: async(req: Request, res: Response, next: NextFunction) => {
-    //     const bodyData: modifyGroupDto = {
-    //         category: { "c_name": req.body.categoryName || '' },
-    //         g_name: req.body.groupName,
-    //         g_memo: req.body.groupMemo,
-    //     };
+    modifyGroup: async(req: Request, res: Response, next: NextFunction) => {
+        const bodyData: modifyGroupDto = {
+            category:   { "c_name": req.body.categoryName || ''},
+            g_newName:  req.body.newName || '',
+            g_name:     req.body.groupName || '',
+            g_memo:     req.body.groupMemo || '',
+        };
 
-    //     // 잘못된 파라미터?
-    //     if (chkData(bodyData, groupVarOpt) === false) {
-    //         return next('API002');
-    //     }
+        // 잘못된 파라미터?
+        if (chkData(bodyData, groupVarOpt) === false) {
+            return next('API002');
+        }
 
-    //     // 그룹 찾을 수 있는지 확인
-    //     const result = await gRepo.findGroupOne(bodyData);
-    //     if (result === undefined) {
-    //         return next('API201');
-    //     }
+        // 그룹 찾을 수 있는지 확인
+        if (await gRepo.getGroupOne(bodyData) === undefined) {
+            return next('API201');
+        }
 
-    //     await gRepo.modifyGroupInfo(bodyData);
-    //     res.json({"message": "정상적으로 처리되었습니다."});
-    // }
+        // 추가 시 중복 여부 확인
+        if(bodyData.g_newName !== '') {
+            if (await gRepo.getGroupOne(bodyData) === undefined) {
+                return next('API201');
+            }
+        }
+
+        // 카테고리 존재 여부 확인
+        if(bodyData.category.c_name !== '') {
+            if(! await cRepo.getCategoryOne(bodyData.category.c_name)) {
+                return next('API203');
+            }
+        }
+
+        await gRepo.setGroupInfo(bodyData);
+        res.json({"message": "정상적으로 처리되었습니다."});
+    }
 }
 
 
