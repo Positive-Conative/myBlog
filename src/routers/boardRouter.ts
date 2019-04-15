@@ -1,10 +1,10 @@
-// import express, { Router } from 'express';
-// const router: Router = express.Router();
+import express, { Router } from 'express';
+const router: Router = express.Router();
 
 // import boardController from '../controllers/boardController';
 
-// // Board 추가
-// router.post('/add', boardController.addBoard);
+// Board 추가
+router.post('/add', ()=>{});
 
 // // 게시글 확인
 // router.get('/check/:b_idx', boardController.getBoardInfo);
@@ -15,4 +15,4 @@
 // // 유저 정보 수정
 // router.put('/modify', boardController.modifyBoard);
 
-// export default router; 
+export default router; 
