@@ -1,10 +1,10 @@
 import express, { Router } from 'express';
 const router: Router = express.Router();
 
-// import boardController from '../controllers/boardController';
+import boardController from '../controllers/boardController';
 
 // Board 추가
-router.post('/add', ()=>{});
+router.post('/add', boardController.addBoard);
 
 // // 게시글 확인
 // router.get('/check/:b_idx', boardController.getBoardInfo);

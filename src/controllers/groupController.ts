@@ -34,7 +34,7 @@ const groupController = {
         }
 
         // 그룹 중복 여부 확인
-        if (await gRepo.getGroupOne(bodyData)) {
+        if (await gRepo.getGroupOne(bodyData.g_name)) {
             return next('API101');
         }
 
@@ -53,7 +53,7 @@ const groupController = {
         }
 
         // 그룹 찾을 수 있는지 확인
-        const result = await gRepo.getGroupOne(bodyData);
+        const result = await gRepo.getGroupOne(bodyData.g_name);
         if (result === undefined) {
             return next('API201');
         }
@@ -79,7 +79,7 @@ const groupController = {
         }
 
         // 그룹 찾을 수 있는지 확인
-        if (await gRepo.getGroupOne(bodyData) === undefined) {
+        if (await gRepo.getGroupOne(bodyData.g_name) === undefined) {
             return next('API201');
         }
 
@@ -101,13 +101,13 @@ const groupController = {
         }
 
         // 그룹 찾을 수 있는지 확인
-        if (await gRepo.getGroupOne(bodyData) === undefined) {
+        if (await gRepo.getGroupOne(bodyData.g_name) === undefined) {
             return next('API201');
         }
 
         // 추가 시 중복 여부 확인
         if(bodyData.g_newName !== '') {
-            if (await gRepo.getGroupOne(bodyData) === undefined) {
+            if (await gRepo.getGroupOne(bodyData.g_name) === undefined) {
                 return next('API201');
             }
         }
