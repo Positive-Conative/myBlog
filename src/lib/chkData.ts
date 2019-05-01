@@ -64,6 +64,13 @@ function chkData(bodyData: any, checkOptions: any) {
                     return false;
                 } 
             }
+
+            // 이메일 형식?
+            if(selected.hasOwnProperty('type_email') === true) {
+                if(target.indexOf('@') !== -1) {
+                    return false;
+                }
+            }
         }
     }
 
@@ -103,7 +110,6 @@ function intervalCheck(options: any) {
     if(separator === 'min' && size > data) {
         return false;
     } else if(separator === 'max' && size < data) {
-        console.log("ES, ",size < data,size, data)
         return false;
     }
     
@@ -116,7 +122,8 @@ function specialCharCheck(str: string) {
         return false;
     }
     // 특수문자 Check
-    const reg = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi;
+    const reg = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>\#$%&\\\=\(\'\"]/gi; // 골뱅 제거
+    // const reg = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi;
     if (reg.test(str)) {  // 특수문자 있음
         return false;
         //   return str.replace(reg, "");  //특수문자 제거후 리턴

@@ -22,9 +22,8 @@ const authController = {
             return next('API002');
         }
 
-        // 유저 존재 여부 확인 (중복 확인)
-        const result = await aRepo.findUserOne(bodyData.u_email);
-        if(result !== undefined) {
+        // 유저 중복 여부 확인 (중복 확인)
+        if(await aRepo.findUserOne(bodyData.u_email)) {
             return next('API100');
         }
 
@@ -33,6 +32,7 @@ const authController = {
     },
 
     getUserInfo: async(req: Request, res: Response, next: NextFunction) => {
+        
         const u_email = req.body.userId;
 
          // 잘못된 파라미터?
