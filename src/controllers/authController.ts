@@ -5,6 +5,7 @@ import { userRepo } from '../models/repository/userRepo';
 import {
     addAuthDto,
     authKeyDto,
+    setAuthFlagDto,
     authVarOpt
 } from '../interfaces/authDto';
 
@@ -36,7 +37,6 @@ const authController = {
     },
 
     getUserInfo: async(req: Request, res: Response, next: NextFunction) => {
-
         const bodyData: authKeyDto = {
             u_email : req.body.userId
         };
@@ -66,23 +66,22 @@ const authController = {
             case 2:     // 탈퇴 예정
                 return next('API402');
         }
-
-        
     },
 
-    // setUserFlag: async (req: Request, res: Response, next: NextFunction) => {
-    //     const bodyData : setAuthFlagDto = {
-    //         u_email: req.body.userId,
-    //         u_flag: req.body.state,
-    //     }
+    setUserFlag: async (req: Request, res: Response, next: NextFunction) => {
+        const bodyData : setAuthFlagDto = {
+            u_email: req.body.userId,
+            u_flag:  req.body.state,
+        }
 
-    //     if(chkChar(bodyData) === false || bodyData.u_flag in [0, 1, 2] === false ) {
-    //         return next('API002');
-    //     }
+        // 파라미터 체크
+        if(chkData(bodyData, authVarOpt) === false) {
+            return next('API002');
+        }
 
-    //     await aRepo.modifyUserFlag(bodyData);
-    //     res.json({"message": "정상적으로 처리되었습니다."});        
-    // },
+        await aRepo.modifyUserFlag(bodyData);
+        res.json({"message": "정상적으로 처리되었습니다."});        
+    },
 
     // modifyUser: async (req: Request, res: Response, next: NextFunction) => {
     //     const bodyData: modifyAuthDto = {

@@ -9,8 +9,12 @@ export interface addAuthDto {
 }
 
 export interface authKeyDto {
-    // id?:number;
     u_email:        string;
+}
+
+export interface setAuthFlagDto {
+    u_email:        string;
+    u_flag:         number;
 }
 
 export const authVarOpt = {

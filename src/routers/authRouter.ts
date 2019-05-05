@@ -12,7 +12,7 @@ router.post('/signup', authController.addUser);
 router.post('/check', authController.getUserInfo);
 
 // 유저 상태 변경
-// router.delete('/state', authController.setUserFlag);
+router.delete('/state', authController.setUserFlag);
 
 // 유저 정보 수정
 // router.put('/modify', authController.modifyUser);
