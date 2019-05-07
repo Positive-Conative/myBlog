@@ -1,7 +1,10 @@
-module.exports = {
-    "conf": {
+module.exports = {    
+    "readme": {
         "사용자 오류": "1XX",
-        "서버 오류": "2XX"
+        "서버 오류": "2XX",
+        "제작 시..": {
+            1: "일관성을 없애기 위해 제작 순서대로 함"
+        }
     },
     "default": {
         "code": "001",
@@ -83,6 +86,22 @@ module.exports = {
         "clientMsg": "비공개 처리된 게시물입니다."
     },
 
+    // User 관련 error
+    "API400": {
+        "code": "400",
+        "httpStatus": "404",
+        "clientMsg": "이메일 인증이 되지 않은 유저입니다."
+    },
+    "API401": {
+        "code": "401",
+        "httpStatus": "404",
+        "clientMsg": "휴면 계정입니다."
+    },
+    "API402": {
+        "code": "401",
+        "httpStatus": "404",
+        "clientMsg": "탈퇴 예정 계정입니다."
+    },
 
     // Server's ERR
     "API990": {

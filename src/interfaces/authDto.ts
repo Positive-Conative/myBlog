@@ -8,6 +8,11 @@ export interface addAuthDto {
     u_permission:   string;
 }
 
+export interface authKeyDto {
+    // id?:number;
+    u_email:        string;
+}
+
 export const authVarOpt = {
     u_email: {
         type:           'string',
@@ -36,7 +41,7 @@ export const authVarOpt = {
     },
     u_flag: {
         type:           'number',
-        must_include:   [0, 1, 2],
+        must_include:   [-1, 0, 1, 2],
         blok_special:   true
     },
     u_permission: {

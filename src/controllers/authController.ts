@@ -4,6 +4,7 @@ import { userRepo } from '../models/repository/userRepo';
 
 import {
     addAuthDto,
+    authKeyDto,
     authVarOpt
 } from '../interfaces/authDto';
 
@@ -24,7 +25,7 @@ const authController = {
         if(chkData(bodyData, authVarOpt) === false) {
             return next('API002');
         }
-        
+
         // 유저 중복 여부 확인 (중복 확인)
         if (await aRepo.findUserOne(bodyData.u_email)) {
             return next('API100');
@@ -34,30 +35,40 @@ const authController = {
         res.json({ "message": "처리 완료!" });
     },
 
-    // getUserInfo: async(req: Request, res: Response, next: NextFunction) => {
+    getUserInfo: async(req: Request, res: Response, next: NextFunction) => {
 
-    //     const u_email = req.body.userId;
+        const bodyData: authKeyDto = {
+            u_email : req.body.userId
+        };
 
-    //      // 잘못된 파라미터?
-    //     if(chkChar(u_email) === false) {
-    //         return next('API002');
-    //     }
+        // 파라미터 체크
+        if(chkData(bodyData, authVarOpt) === false) {
+            return next('API002');
+        }
+        
+        const result = await aRepo.findUserOne(bodyData.u_email);
+        if(result === undefined) {
+            return next('API200');
+        }
 
-    //     const result = await aRepo.findUserOne(u_email);
-    //     if(result === undefined) {
-    //         return next('API200');
-    //     }
+        // 유저 플래그에 따른 Switch
+        switch(result.flag) {
+            case -1:    // 이메일 인증 전
+                return next('API400');
 
-    //     // 비공개 유저인지 확인하고, 정상이라면 flag 지움 처리
-    //     if(result.flag === 1) {
-    //         return next('API300');
-    //     } else {
-    //         delete result.flag;
-    //     }
+            case 0:     // 정상
+                delete result.flag;
+                return res.json({result, "message": "정상적으로 조회되었습니다."});
+            
+            case 1:     // 휴면
+                return next('API401');
+            
+            case 2:     // 탈퇴 예정
+                return next('API402');
+        }
 
-
-    //     res.json({result, "message": "정상적으로 조회되었습니다."});
-    // },
+        
+    },
 
     // setUserFlag: async (req: Request, res: Response, next: NextFunction) => {
     //     const bodyData : setAuthFlagDto = {
