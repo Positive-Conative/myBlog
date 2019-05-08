@@ -9,12 +9,12 @@ import authController from '../controllers/authController';
 router.post('/signup', authController.addUser);
 
 // 가입된 유저 확인
-router.post('/check', authController.getUserInfo);
+// router.post('/check', authController.getUserInfo);
 
 // 유저 상태 변경
-router.delete('/state', authController.setUserFlag);
+// router.delete('/state', authController.setUserFlag);
 
 // 유저 정보 수정
-router.put('/modify', authController.modifyUser);
+// router.put('/modify', authController.modifyUser);
 
 export default router;

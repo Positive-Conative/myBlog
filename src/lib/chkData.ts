@@ -33,6 +33,7 @@ function chkData(bodyData: any, checkOptions: any) {
                 };
 
                 if(intervalCheck(options) === false) {
+                    console.log("최솟값 err", target);
                     return false;
                 }
             }
@@ -47,6 +48,7 @@ function chkData(bodyData: any, checkOptions: any) {
                 };
 
                 if(intervalCheck(options) === false) {
+                    console.log("최댓값 err", target);
                     return false;
                 }
             }
@@ -54,6 +56,7 @@ function chkData(bodyData: any, checkOptions: any) {
             // 특수문자 허용 여부 체크
             if(selected.hasOwnProperty('blok_special') === true) {
                 if(specialCharCheck(target) === false) {
+                    console.log("특수문자 err", target);
                     return false;
                 }
             }
@@ -61,13 +64,15 @@ function chkData(bodyData: any, checkOptions: any) {
             // 꼭 포함해야 하는 것이 있나?
             if(selected.hasOwnProperty('must_include') === true) {
                 if(target in [0, 1, 2] === false) {
+                    console.log("포함 값 err", target);
                     return false;
                 } 
             }
 
             // 이메일 형식?
             if(selected.hasOwnProperty('type_email') === true) {
-                if(target.indexOf('@') !== -1) {
+                if(target.indexOf('@') === -1) {
+                    console.log("이메일 err", target);
                     return false;
                 }
             }
@@ -122,8 +127,9 @@ function specialCharCheck(str: string) {
         return false;
     }
     // 특수문자 Check
-    const reg = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>\#$%&\\\=\(\'\"]/gi; // 골뱅 제거
+    const reg = /[\{\}\[\]\/?,;:|\)*~`!^\-_+<>\#$%&\\\=\(\'\"]/gi; // .(반점), @(골뱅) 제거
     // const reg = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi;
+
     if (reg.test(str)) {  // 특수문자 있음
         return false;
         //   return str.replace(reg, "");  //특수문자 제거후 리턴

@@ -1,9 +1,10 @@
 import { Request, Response, NextFunction } from 'express';
-import chkChar from '../lib/chkChar';
+import chkData from '../lib/chkData';
 import { userRepo } from '../models/repository/userRepo';
 
 import {
-    addAuthDto
+    addAuthDto,
+    authVarOpt
 } from '../interfaces/authDto';
 
 const aRepo = new userRepo();
@@ -19,11 +20,11 @@ const authController = {
             u_permission: 'default',
         }
 
-        // 파라미터 Check
-        if (chkChar(bodyData) === false || bodyData.u_email.indexOf('@') === -1) {
+        // 파라미터 체크
+        if(chkData(bodyData, authVarOpt) === false) {
             return next('API002');
         }
-
+        
         // 유저 중복 여부 확인 (중복 확인)
         if (await aRepo.findUserOne(bodyData.u_email)) {
             return next('API100');
