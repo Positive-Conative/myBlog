@@ -17,6 +17,14 @@ export interface setAuthFlagDto {
     u_flag:         number;
 }
 
+export interface modifyAuthDto {
+    u_email:        string;
+    u_password:     string;
+    u_name:         string;
+    u_nickname:     string;
+}
+
+
 export const authVarOpt = {
     u_email: {
         type:           'string',

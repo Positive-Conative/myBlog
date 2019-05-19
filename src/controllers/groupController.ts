@@ -39,7 +39,7 @@ const groupController = {
         }
 
         await gRepo.addGroup(bodyData);
-        res.json({ "message": "처리 완료!" });
+        return res.json({ "message": "처리 완료!" });
     },
 
     getGroupInfo: async (req: Request, res: Response, next: NextFunction) => {
@@ -65,7 +65,7 @@ const groupController = {
             delete result.flag;
         }
 
-        res.json({ result, "message": "정상적으로 조회되었습니다." });
+        return res.json({ result, "message": "정상적으로 조회되었습니다." });
     },
 
     setGroupFlag: async (req: Request, res: Response, next: NextFunction) => {
@@ -84,7 +84,7 @@ const groupController = {
         }
 
         await gRepo.setGroupFlag(bodyData);
-        res.json({ "message": "정상적으로 처리되었습니다." });
+        return res.json({ "message": "정상적으로 처리되었습니다." });
     },
 
     modifyGroup: async(req: Request, res: Response, next: NextFunction) => {
@@ -120,7 +120,7 @@ const groupController = {
         }
 
         await gRepo.setGroupInfo(bodyData);
-        res.json({"message": "정상적으로 처리되었습니다."});
+        return res.json({"message": "정상적으로 처리되었습니다."});
     }
 }
 

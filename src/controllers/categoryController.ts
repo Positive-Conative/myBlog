@@ -89,7 +89,7 @@ const categoryController = {
 
         // ORM 실행 
         await cRepo.setCategory(bodyData);
-        res.json({"message": "정상적으로 처리되었습니다."});
+        return res.json({"message": "정상적으로 처리되었습니다."});
     },
 
     // 삭제 (flag 있을 필요 X)

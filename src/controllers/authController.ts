@@ -6,6 +6,7 @@ import {
     addAuthDto,
     authKeyDto,
     setAuthFlagDto,
+    modifyAuthDto,
     authVarOpt
 } from '../interfaces/authDto';
 
@@ -33,7 +34,7 @@ const authController = {
         }
 
         await aRepo.addUser(bodyData);
-        res.json({ "message": "처리 완료!" });
+        return res.json({ "message": "처리 완료!" });
     },
 
     getUserInfo: async(req: Request, res: Response, next: NextFunction) => {
@@ -46,6 +47,7 @@ const authController = {
             return next('API002');
         }
         
+        // 유저 확인
         const result = await aRepo.findUserOne(bodyData.u_email);
         if(result === undefined) {
             return next('API200');
@@ -80,37 +82,50 @@ const authController = {
         }
 
         await aRepo.modifyUserFlag(bodyData);
-        res.json({"message": "정상적으로 처리되었습니다."});        
+        return res.json({"message": "정상적으로 처리되었습니다."});        
     },
 
-    // modifyUser: async (req: Request, res: Response, next: NextFunction) => {
-    //     const bodyData: modifyAuthDto = {
-    //         u_email: req.body.userId,
-    //         u_password: req.body.userPw,
-    //         u_name: req.body.userName,
-    //         u_nickname: req.body.userNick,
-    //     }
+    modifyUser: async (req: Request, res: Response, next: NextFunction) => {
+        const bodyData: modifyAuthDto = {
+            u_email: req.body.userId,
+            u_password: req.body.userPw,
+            u_name: req.body.userName,
+            u_nickname: req.body.userNick,
+        }
 
-    //     // 파라미터 Check
-    //     if(chkChar(bodyData) === false || bodyData.u_email.indexOf('@') === -1) {
-    //         return next('API002');
-    //     }
+        // 파라미터 체크
+        if(chkData(bodyData, authVarOpt) === false) {
+            return next('API002');
+        }
 
-    //     if(await aRepo.findUserOne(bodyData.u_email) === undefined) {
-    //         return next('API200');
-    //     }
 
-    //     // 유저 존재 여부 확인 (중복 확인)
-    //     const result = await aRepo.findUserOne(bodyData.u_email);
-    //     if(result === undefined) {
-    //         return next('API100');
-    //     }
+        // ---- 이 아랫부분부터 중복, 함수 하나 만드는게 좋아보임 (정상일때만 특수처리) -----
+        // 유저 확인
+        const result = await aRepo.findUserOne(bodyData.u_email);
+        if(result === undefined) {
+            return next('API200');
+        }
 
-    //     await aRepo.modifyUserInfo(bodyData);
-    //     res.json({"message": "정상적으로 처리되었습니다."});
+        // 유저 플래그에 따른 Switch
+        switch(result.flag) {
+            case -1:    // 이메일 인증 전
+                return next('API400');
 
-    // },
+            case 0:     // 정상
+                await aRepo.modifyUserInfo(bodyData);
+                return res.json({"message": "정상적으로 처리되었습니다."});
+            
+            case 1:     // 휴면
+                return next('API401');
+            
+            case 2:     // 탈퇴 예정
+                return next('API402');
+        }
+        
+    },
 }
+
+
 
 
 export = authController;

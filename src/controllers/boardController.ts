@@ -44,7 +44,7 @@ const boardController = {
         
         await bRepo.addBoard(bodyData);
 
-        res.json({"message": "처리 완료!"});
+        return res.json({"message": "처리 완료!"});
     },
 
     // getBoardInfo: async (req: Request, res: Response, next: NextFunction) => {

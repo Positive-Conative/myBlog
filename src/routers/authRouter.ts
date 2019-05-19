@@ -15,6 +15,6 @@ router.post('/check', authController.getUserInfo);
 router.delete('/state', authController.setUserFlag);
 
 // 유저 정보 수정
-// router.put('/modify', authController.modifyUser);
+router.put('/modify', authController.modifyUser);
 
 export default router;
