@@ -12,7 +12,6 @@ module.exports = {
         "clientMsg": "알 수 없는 오류가 발생하였습니다."
     },
 
-
     // Client's ERR
     "API001": {
         "code": "001",

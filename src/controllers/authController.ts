@@ -39,7 +39,7 @@ const authController = {
 
     getUserInfo: async(req: Request, res: Response, next: NextFunction) => {
         const bodyData: authKeyDto = {
-            u_email : req.body.userId
+            u_email : req.params.userId
         };
 
         // 파라미터 체크
@@ -72,7 +72,7 @@ const authController = {
 
     setUserFlag: async (req: Request, res: Response, next: NextFunction) => {
         const bodyData : setAuthFlagDto = {
-            u_email: req.body.userId,
+            u_email: req.params.userId,
             u_flag:  req.body.state,
         }
 
@@ -87,7 +87,7 @@ const authController = {
 
     modifyUser: async (req: Request, res: Response, next: NextFunction) => {
         const bodyData: modifyAuthDto = {
-            u_email: req.body.userId,
+            u_email: req.params.userId,
             u_password: req.body.userPw,
             u_name: req.body.userName,
             u_nickname: req.body.userNick,

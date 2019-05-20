@@ -3,3 +3,4 @@ dist
 .env
 package-lock.json
 src/models/
+src/config/
