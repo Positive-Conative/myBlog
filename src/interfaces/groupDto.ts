@@ -13,7 +13,8 @@ export interface modifyGroupDto {
 }
 
 export interface groupKeyDto {
-    g_name:     string;
+    g_idx?:     number;
+    g_name?:    string;
 }
 
 export const groupVarOpt = {
@@ -24,6 +25,10 @@ export const groupVarOpt = {
     //     max_size:       15,
     //     blok_special:   true
     // },
+    g_idx: {
+        type:           'number',
+        min_size:       0,
+    },
     category: {
         type:           'mapdata',
         mapType:        'number',
