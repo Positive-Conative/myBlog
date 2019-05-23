@@ -13,10 +13,10 @@ router.get('/all', categoryController.getCategoryList);
 router.post('/', categoryController.addCategory);
 
 // 카테고리 정보 수정
-router.put('/:c_idx', categoryController.modifyCategory);
+router.put('/:categoryIdx', categoryController.modifyCategory);
 
 // 카테고리 정보 삭제
-router.delete('/:c_idx', categoryController.deleteCategory);
+router.delete('/:categoryIdx', categoryController.deleteCategory);
 
 
 export default router; 
