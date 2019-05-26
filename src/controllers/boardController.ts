@@ -5,10 +5,10 @@ import { userRepo } from '../models/repository/userRepo';
 // import { boardGroupRepo } from '../models/repository/map-board-group';
 // import chkData from '../lib/chkData';
 import chkData from '../lib/chkData';
-import { 
+import {
     addBoardDto,
     boardVarOpt
- } from '../interfaces/boardDto';
+} from '../interfaces/boardDto';
 
 const bRepo = new boardRepo();
 const gRepo = new groupRepo();
@@ -17,34 +17,34 @@ const aRepo = new userRepo();
 
 const boardController = {
     // 게시글 추가
-    addBoard : async (req: Request, res: Response, next: NextFunction) => {
+    addBoard: async (req: Request, res: Response, next: NextFunction) => {
         const bodyData: addBoardDto = {
-            group:      {"g_name":  req.body.groupName || ''},
-            user:       {"u_email": req.body.userEmail || ''},
-            b_writer:   req.body.writer,
-            b_title:    req.body.title,
-            b_content:  req.body.content,
-            b_flag:     0,
+            group: { "g_name": req.body.groupName || '' },
+            user: { "u_email": req.body.userEmail || '' },
+            b_writer: req.body.writer,
+            b_title: req.body.title,
+            b_content: req.body.content,
+            b_flag: 0,
         }
 
         // 파라미터 Check
         if (chkData(bodyData, boardVarOpt) === false) {
             return next('API002');
         }
-        
+
         // 유저 존재 여부 확인
         if (! await aRepo.findUserOne(bodyData.user.u_email)) {
             return next('API200');
         }
-        
+
         // 그룹 존재 여부 확인
         if (! await gRepo.getGroupOne(bodyData.group.g_name)) {
             return next('API201');
         }
-        
+
         await bRepo.addBoard(bodyData);
 
-        return res.json({"message": "처리 완료!"});
+        return res.json({ "message": "처리 완료!" });
     },
 
     // getBoardInfo: async (req: Request, res: Response, next: NextFunction) => {
@@ -54,7 +54,7 @@ const boardController = {
     //     if(chkChar(b_idx) === false) {
     //         return next('API002');
     //     }
-        
+
     //     // Board 찾을 수 있는지 확인
     //     const result = await bRepo.findBoardOne(parseInt(b_idx, 10));
     //     if(result === undefined) {  
@@ -67,7 +67,7 @@ const boardController = {
     //     } else {
     //         delete result.flag;
     //     }
-        
+
     //     res.json({result, "message": "정상적으로 조회되었습니다."});
     // },
 
@@ -122,7 +122,7 @@ const boardController = {
     //             g_name : bodyData.g_name
     //         }
     //         delete bodyData.g_name; // 아래 수정폼을 위해..
-            
+
     //         bgRepo.deleteMap(mapData);
     //     }
     //     // console.log(bodyData)
