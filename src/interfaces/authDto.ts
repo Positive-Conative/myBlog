@@ -24,7 +24,6 @@ export interface modifyAuthDto {
     u_nickname:     string;
 }
 
-
 export const authVarOpt = {
     u_email: {
         type:           'string',
