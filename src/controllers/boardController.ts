@@ -19,12 +19,11 @@ const boardController = {
     // 게시글 추가
     addBoard: async (req: Request, res: Response, next: NextFunction) => {
         const bodyData: addBoardDto = {
-            group: { "g_name": req.body.groupName || '' },
-            user: { "u_email": req.body.userEmail || '' },
-            b_writer: req.body.writer,
-            b_title: req.body.title,
-            b_content: req.body.content,
-            b_flag: 0,
+            group:      { "g_name": req.body.groupName || '' },
+            user:       { "u_email": req.body.userEmail || '' },
+            b_title:    req.body.title,
+            b_content:  req.body.content,
+            b_flag:     0,
         }
 
         // 파라미터 Check
@@ -43,7 +42,6 @@ const boardController = {
         }
 
         await bRepo.addBoard(bodyData);
-
         return res.json({ "message": "처리 완료!" });
     },
 
