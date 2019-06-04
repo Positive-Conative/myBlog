@@ -19,33 +19,33 @@ const aRepo = new userRepo();
 
 const boardController = {
     // 게시글 추가
-    // addBoard: async (req: Request, res: Response, next: NextFunction) => {
-    //     const bodyData: addBoardDto = {
-    //         group:      { "g_name": req.body.groupName || '' },
-    //         user:       { "u_email": req.body.userEmail || '' },
-    //         b_title:    req.body.title,
-    //         b_content:  req.body.content,
-    //         b_flag:     0,
-    //     }
+    addBoard: async (req: Request, res: Response, next: NextFunction) => {
+        const bodyData: addBoardDto = {
+            group:      { "g_idx": parseInt(req.params.groupIdx, 10) || -1 },
+            user:       { "u_email": req.body.userEmail || '' },
+            b_title:    req.body.title,
+            b_content:  req.body.content,
+            b_flag:     0,
+        }
 
-    //     // 파라미터 Check
-    //     if (chkData(bodyData, boardVarOpt) === false) {
-    //         return next('API002');
-    //     }
+        // 파라미터 Check
+        if (chkData(bodyData, boardVarOpt) === false) {
+            return next('API002');
+        }
 
-    //     // 유저 존재 여부 확인
-    //     if (! await aRepo.findUserOne(bodyData.user.u_email)) {
-    //         return next('API200');
-    //     }
+        // 유저 존재 여부 확인
+        if (! await aRepo.findUserOne(bodyData.user.u_email)) {
+            return next('API200');
+        }
 
-    //     // 그룹 존재 여부 확인
-    //     if (! await gRepo.getGroupOne(bodyData.group.g_name)) {
-    //         return next('API201');
-    //     }
+        // 그룹 존재 여부 확인
+        if (! await gRepo.getGroupOne({g_idx: bodyData.group.g_idx})) {
+            return next('API201');
+        }
 
-    //     await bRepo.addBoard(bodyData);
-    //     return res.json({ "message": "처리 완료!" });
-    // },
+        await bRepo.addBoard(bodyData);
+        return res.json({ "message": "처리 완료!" });
+    },
 
     // getBoardInfo: async (req: Request, res: Response, next: NextFunction) => {
     //     const bodyData: boardKeyDto = {
