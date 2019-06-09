@@ -12,7 +12,7 @@ function chkData(bodyData: any, checkOptions: any) {
     for(const checkItem of chkArr) {
         // bodyData[key] --> 비교 당할 데이터
         let target = bodyData[checkItem];
-        if(target === undefined) return true;    // 없는거니까 그냥 넘김
+        if(target === undefined) continue;    // 없는거니까 그냥 넘김
 
         let selected = checkOptions[checkItem]; 
         // Type check ==> Type 존재?
@@ -96,7 +96,6 @@ function intervalCheck(options: any) {
 
     // 현재 값
     let { data } = options;
-    
     switch(type) {
         case 'mapdata':
         case 'string':

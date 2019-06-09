@@ -7,6 +7,7 @@ import { userRepo } from '../models/repository/userRepo';
 import chkData from '../lib/chkData';
 import {
     addBoardDto,
+    boardKeyDto,
     boardVarOpt
 } from '../interfaces/boardDto';
 
@@ -45,29 +46,33 @@ const boardController = {
         return res.json({ "message": "처리 완료!" });
     },
 
-    // getBoardInfo: async (req: Request, res: Response, next: NextFunction) => {
-    //     const b_idx = req.params.b_idx;
+    getBoardInfo: async (req: Request, res: Response, next: NextFunction) => {
+        const bodyData: boardKeyDto = {
+            b_idx : parseInt(req.params.b_idx, 10) || -1
+        };
 
-    //     // 잘못된 파라미터?
-    //     if(chkChar(b_idx) === false) {
-    //         return next('API002');
-    //     }
+        // 파라미터 Check
+        if (chkData(bodyData, boardVarOpt) === false) {
+            return next('API002');
+        }
 
-    //     // Board 찾을 수 있는지 확인
-    //     const result = await bRepo.findBoardOne(parseInt(b_idx, 10));
-    //     if(result === undefined) {  
-    //         return next('API202');
-    //     }
+        // Board 찾을 수 있는지 확인
+        const result = await bRepo.findBoardOne(bodyData.b_idx);
+        if(result === undefined) {  
+            return next('API202');
+        }
 
-    //     // 비공개 게시물인지 확인하고, 정상이라면 flag 지움 처리
-    //     if(result.flag === 1) {
-    //         return next('API302');
-    //     } else {
-    //         delete result.flag;
-    //     }
-
-    //     res.json({result, "message": "정상적으로 조회되었습니다."});
-    // },
+        // 게시물 플래그에 따른 Switch
+        switch(result.flag) {
+            case 0:     // 정상
+                delete result.flag;
+                return res.json({result, "message": "정상적으로 조회되었습니다."});
+            
+            case 1:     // 삭제된
+                return next('API302');
+        }
+        
+    },
 
     // setBoardFlag: async (req: Request, res: Response, next: NextFunction) => {
     //     const bodyData : setBoardFlagDto = {
