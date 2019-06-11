@@ -21,7 +21,7 @@ const groupController = {
             category: { "c_idx": parseInt(req.params.categoryIdx, 10) || -1 },
             g_name: req.body.groupName,
             g_memo: req.body.groupMemo,
-            g_flag: 0 
+            g_flag: 0
         };
 
         // 파라미터 Check

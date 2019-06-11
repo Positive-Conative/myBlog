@@ -7,7 +7,7 @@ export interface addBoardDto {
 }
 
 export interface boardKeyDto {
-    b_idx: number;
+    b_idx?: number;
 }
 
 export interface setBoardFlagDto {
