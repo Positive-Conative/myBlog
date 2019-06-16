@@ -8,6 +8,7 @@ import chkData from '../lib/chkData';
 import {
     addBoardDto,
     boardKeyDto,
+    setBoardFlagDto,
     boardVarOpt
 } from '../interfaces/boardDto';
 
@@ -74,25 +75,25 @@ const boardController = {
         
     },
 
-    // setBoardFlag: async (req: Request, res: Response, next: NextFunction) => {
-    //     const bodyData : setBoardFlagDto = {
-    //         b_idx: req.body.idx,
-    //         b_flag: req.body.state,
-    //     }
+    setBoardFlag: async (req: Request, res: Response, next: NextFunction) => {
+        const bodyData : setBoardFlagDto = {
+            b_idx: req.body.idx,
+            b_flag: req.body.state,
+        }
 
-    //     // 잘못된 파라미터?
-    //     if(chkChar(bodyData) === false || bodyData.b_flag in [0, 1, 2] === false ) {
-    //         return next('API002');
-    //     }
+        // 파라미터 Check
+        if (chkData(bodyData, boardVarOpt) === false) {
+            return next('API002');
+        }
 
-    //     // Board 찾을 수 있는지 확인
-    //     if(await bRepo.findBoardOne(bodyData.b_idx) === undefined) {  
-    //         return next('API202');
-    //     }
+        // Board 존재 여부 확인
+        if(! await bRepo.findBoardOne(bodyData.b_idx)) {  
+            return next('API202');
+        }
 
-    //     await bRepo.modifyBoardFlag(bodyData);
-    //     res.json({"message": "정상적으로 처리되었습니다."});
-    // },
+        await bRepo.modifyBoardFlag(bodyData);
+        res.json({"message": "정상적으로 처리되었습니다."});
+    },
 
     // modifyBoard: async (req: Request, res: Response, next: NextFunction) => {
     //     const bodyData: modifyBoardDto = {

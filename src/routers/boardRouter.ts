@@ -10,7 +10,7 @@ router.post('/add', boardController.addBoard);
 router.get('/check/:b_idx', boardController.getBoardInfo);
 
 // // 게시글 상태 변경
-// router.delete('/state', boardController.setBoardFlag);
+router.delete('/state', boardController.setBoardFlag);
 
 // // 유저 정보 수정
 // router.put('/modify', boardController.modifyBoard);
