@@ -8,7 +8,7 @@ import {
     groupKeyDto,
     modifyGroupDto,
     groupVarOpt
-} from '../interfaces/groupDto'; 
+} from '../interfaces/groupDto';
  
 const cRepo = new categoryRepo();
 const gRepo = new groupRepo(); 
