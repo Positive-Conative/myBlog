@@ -4,13 +4,20 @@ export interface addCategoryDto {
 }
 
 export interface modifyCategoryDto {
+    c_idx :     number;
     c_newName:  string;
     c_name:     string;
     c_memo:     string;
 }
 
+// export interface categoryKeyDto {
+//     c_name:  string;
+//     // c_idx :  number;
+// }
+
 export interface categoryKeyDto {
-    c_name:  string;
+    c_name?:  string;
+    c_idx ?:  number;
 }
 
 export const categoryVarOpt = {

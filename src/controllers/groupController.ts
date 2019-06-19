@@ -29,7 +29,7 @@ const groupController = {
         }
 
         // 카테고리 존재 여부 확인
-        if (! await cRepo.getCategoryOne(bodyData.category.c_name)) {
+        if (! await cRepo.getCategoryOne({c_name: bodyData.category.c_name})) {
             return next('API203');
         }
 
@@ -114,7 +114,7 @@ const groupController = {
 
         // 카테고리 존재 여부 확인
         if(bodyData.category.c_name !== '') {
-            if(! await cRepo.getCategoryOne(bodyData.category.c_name)) {
+            if(! await cRepo.getCategoryOne({c_name: bodyData.category.c_name})) {
                 return next('API203');
             }
         }
