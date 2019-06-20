@@ -11,7 +11,7 @@ import {
 } from '../interfaces/groupDto';
 
 const cRepo = new categoryRepo();
-const gRepo = new groupRepo();
+const gRepo = new groupRepo(); 
 
 const groupController = {
     // 그룹 추가
