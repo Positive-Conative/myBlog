@@ -15,8 +15,8 @@ const categoryController = {
     // 카테고리 추가
     addCategory : async (req: Request, res: Response, next: NextFunction) => {
         const bodyData: addCategoryDto = {
-            c_name: req.body.categoryName || '',
-            c_memo: req.body.categoryMemo || '',
+            c_name: req.body.categoryName,
+            c_memo: req.body.categoryMemo,
         };
 
         // 파라미터 체크
@@ -37,7 +37,7 @@ const categoryController = {
     // 안쓸것 같지만 만들어둠 : 1개 조회 - 동일 이름의 카테고리 만들지?
     getCategoryInfo : async (req: Request, res: Response, next: NextFunction) => {
         const bodyData: categoryKeyDto = {
-            c_name: req.body.categoryName || '',
+            c_name: req.params.categoryName,
         };
 
         // 파라미터 체크
@@ -65,9 +65,9 @@ const categoryController = {
     // 수정
     modifyCategory: async(req: Request, res: Response, next: NextFunction) => {
         const bodyData: modifyCategoryDto = {
-            c_name:     req.body.categoryName || '',
-            c_memo:     req.body.categoryMemo || '',
-            c_newName:  req.body.newName || '',
+            c_name:     req.params.categoryName,
+            c_memo:     req.body.categoryMemo,
+            c_newName:  req.body.newName,
         };
 
         // 파라미터 체크
@@ -95,7 +95,7 @@ const categoryController = {
     // 삭제 (flag 있을 필요 X)
     deleteCategory: async(req: Request, res: Response, next: NextFunction) => {
         const bodyData: categoryKeyDto = {
-            c_name: req.body.categoryName || '',
+            c_name: req.params.categoryName,
         };
 
         // 파라미터 체크
