@@ -15,6 +15,16 @@ export interface setBoardFlagDto {
     b_flag: number;
 }
 
+export interface modifyBoardDto {
+    group:     { g_idx:  number };
+    user:      { u_email: string };
+    b_idx:     number;
+    b_title:   string;
+    b_content: string;
+    b_flag:    number;
+}
+
+
 // todo: 수정이 생길때마다 이렇게 일일히 수정해야하나.. 이걸 따로 한 파일에 모을까..
 // 우선 이렇게 작업하고 추후 생각해보기로..
 
