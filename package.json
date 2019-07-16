@@ -4,7 +4,7 @@
   "description": "",
   "main": "www",
   "scripts": {
-    "start": "node dist/bin/server.js",
+    "start": "pm2 start dist/src/bin/server.js --watch",
     "dev": "nodemon src/bin/server.ts",
     "build": "tsc -p .",
     "test": "echo \"Error: no test specified\" && exit 1"
