@@ -7,7 +7,7 @@ import groupController from '../controllers/groupController';
 router.get('/one/:groupIdx', groupController.getGroupInfo);
 
 // 그룹 추가
-router.post('/add/:categoryIdx', groupController.addGroup);
+router.post('/add', groupController.addGroup);
 
 // 그룹 상태 변경
 router.delete('/:groupIdx', groupController.setGroupFlag);

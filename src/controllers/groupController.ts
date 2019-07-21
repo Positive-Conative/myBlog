@@ -18,7 +18,7 @@ const groupController = {
     // 그룹 추가
     addGroup: async (req: Request, res: Response, next: NextFunction) => {
         const bodyData: addGroupDto = {
-            category: { "c_idx": parseInt(req.params.categoryIdx, 10) || -1 },
+            category: { "c_idx": parseInt(req.body.categoryIdx, 10) || -1 },
             g_name: req.body.groupName,
             g_memo: req.body.groupMemo,
             g_flag: 0
