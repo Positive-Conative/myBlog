@@ -15,5 +15,4 @@ router.put('/:groupIdx', groupController.modifyGroup);
 // 그룹 상태 변경
 router.delete('/:groupIdx', groupController.setGroupFlag);
 
-
 export default router;

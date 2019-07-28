@@ -12,10 +12,10 @@ router.get('/new', boardController.getBoardNew);
 // Board 추가
 router.post('/add', boardController.addBoard);
 
-// 게시글 상태 변경
-router.delete('/:boardIdx', boardController.setBoardFlag);
-
 // 게시글 정보 수정
 router.put('/:boardIdx', boardController.modifyBoard);
+
+// 게시글 상태 변경
+router.delete('/:boardIdx', boardController.setBoardFlag);
 
 export default router; 
