@@ -17,4 +17,4 @@ Git 재시작 : `21.12.08 (이전 repo 삭제)
 
 ## 2. ERD
 
-![MyWeb.jpg](./github/ERD.jpg) 
+![MyWeb.jpg](./github/ERD.jpg)
