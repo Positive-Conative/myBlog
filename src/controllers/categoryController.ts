@@ -91,7 +91,7 @@ const categoryController = {
         await cRepo.setCategory(bodyData);
         return res.json({"message": "정상적으로 처리되었습니다."});
     },
-
+ 
     // 삭제 (flag 있을 필요 X)
     deleteCategory: async(req: Request, res: Response, next: NextFunction) => {
         const bodyData: categoryKeyDto = {
