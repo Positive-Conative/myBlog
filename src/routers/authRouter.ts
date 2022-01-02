@@ -2,7 +2,7 @@ import express, { Router } from 'express';
 const router: Router = express.Router();
 
 import authController from '../controllers/authController';
-
+ 
 // 가입된 유저 확인
 router.get('/one/:userId', authController.getUserInfo);
 
