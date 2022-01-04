@@ -17,16 +17,18 @@ function chkData(bodyData: any, checkOptions: any) {
         let selected = checkOptions[checkItem]; 
         // Type check ==> Type 존재?
         if(selected.hasOwnProperty('type') === true) {
+            let type = selected.type;
 
             // mapdata 형식
-            if(selected.type === 'mapdata') {
+            if(type === 'mapdata') {
                 target = target[checkOptions[checkItem].key];
+                type = selected.mapType;
             }
 
             // Min size check
             if(selected.hasOwnProperty('min_size') === true) {
                 const options = {
-                    type:       selected.type, 
+                    type:       type, 
                     size:       selected.min_size,
                     data:       target,
                     separator:  'min',
@@ -41,7 +43,7 @@ function chkData(bodyData: any, checkOptions: any) {
             // Max size check
             if(selected.hasOwnProperty('max_size') === true) {
                 const options = {
-                    type:       selected.type, 
+                    type:       type, 
                     size:       selected.max_size,
                     data:       target,
                     separator:  'max',
@@ -97,7 +99,6 @@ function intervalCheck(options: any) {
     // 현재 값
     let { data } = options;
     switch(type) {
-        case 'mapdata':
         case 'string':
             data = data.toString().length;
             break;
