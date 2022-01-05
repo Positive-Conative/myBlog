@@ -1,0 +1,197 @@
+[33mcommit 1934ee546256746df6566f03648909bb4362bfff[m[33m ([m[1;36mHEAD[m[33m)[m
+Author: Positive-Conative <kyj970513@naver.com>
+Date:   Tue Jun 4 05:13:00 2019 +0900
+
+    [Modify] Auth RESTful 작업
+
+[33mcommit ae0578654fbeab40daf763c72a725e2166418e1f[m
+Author: Positive-Conative <kyj970513@naver.com>
+Date:   Mon Jun 17 05:13:00 2019 +0900
+
+    [Modify] board 플래그 수정 부분 정상화
+
+[33mcommit f538aaf03fb837958dd48708063f5ec7ad30bd1e[m
+Author: Positive-Conative <kyj970513@naver.com>
+Date:   Mon Jun 10 05:13:00 2019 +0900
+
+    [Add] 게시글 확인 부분 left join 완료
+
+[33mcommit ff14303a91694991b4bfea371a6c4cf034264baf[m
+Author: Positive-Conative <kyj970513@naver.com>
+Date:   Mon Jun 3 05:13:00 2019 +0900
+
+    [Modify] Board 추가 부분 정상화
+
+[33mcommit b1ba0162eee714f58216446f22bda04de49609cc[m
+Author: Positive-Conative <kyj970513@naver.com>
+Date:   Mon May 27 05:13:00 2019 +0900
+
+    [Delete] 이전 Check char 삭제
+
+[33mcommit 87d92e0da1508bb2faf4ffd498a86df088c7afb7[m
+Author: Positive-Conative <kyj970513@naver.com>
+Date:   Mon May 20 05:13:00 2019 +0900
+
+    [Modify] Auth area 정상화 완료
+
+[33mcommit dc4eb5c722a6049bb72cf5d8c59caa7bca25ac8e[m
+Author: Positive-Conative <kyj970513@naver.com>
+Date:   Mon May 6 05:13:00 2019 +0900
+
+    [Modify] user flag 설정 부분 정상화
+
+[33mcommit cb98f368835660f8d1937ffca3b592f7eedc0b29[m
+Author: Positive-Conative <kyj970513@naver.com>
+Date:   Wed May 8 05:13:00 2019 +0900
+
+    [Modify] user data 불러오는 부분 정상화
+
+[33mcommit ce9a8eab48214967a165a1698e8c6452a169ff95[m
+Author: Positive-Conative <kyj970513@naver.com>
+Date:   Thu May 9 05:13:00 2019 +0900
+
+    [Modify] Check data 이메일 부분 수정
+
+[33mcommit b284fad4f6929b7e17b0592f5290e5165dbf6770[m
+Author: Positive-Conative <kyj970513@naver.com>
+Date:   Fri May 10 05:13:00 2019 +0900
+
+    [Modify] Auth dto 부분 수정
+
+[33mcommit 1ed032beab99cd2977788563df3a13a7aec02f09[m
+Author: Positive-Conative <kyj970513@naver.com>
+Date:   Thu May 2 05:13:00 2019 +0900
+
+    [Add] 데이터 확인 부분 email type 추가
+
+[33mcommit 0bfdf67d14367cd1afcf112c44a6f6d9b9a95ada[m
+Author: Positive-Conative <kyj970513@naver.com>
+Date:   Wed Apr 24 05:13:00 2019 +0900
+
+    [Add] Board 작성 부분 추가
+
+[33mcommit c75661d7517db5603e3a17c2c86a70f0aee88361[m
+Author: Positive-Conative <kyj970513@naver.com>
+Date:   Tue Apr 16 05:13:00 2019 +0900
+
+    [Test] test
+
+[33mcommit 385cb2c9446a61e8ac259cf567b7f2daa48adef1[m
+Author: Positive-Conative <kyj970513@naver.com>
+Date:   Thu Mar 28 05:13:00 2019 +0900
+
+    [Modify & Add] 그룹 수정부분 추가 및 Check data mapping data 체크 부분 타입 강화
+
+[33mcommit 33e92658904ef6ee0fafc1f9a69ecc0192ff0962[m
+Author: Positive-Conative <kyj970513@naver.com>
+Date:   Thu Feb 28 05:13:00 2019 +0900
+
+    [Modify] 기타 수정(varable)
+
+[33mcommit e0d2afc0312de32db26512088fd3e24568eb1711[m
+Author: Positive-Conative <kyj970513@naver.com>
+Date:   Wed Feb 27 05:13:00 2019 +0900
+
+    [Add] Flag 수정(Delete area) 제작 완료
+
+[33mcommit 2e3a983b969ab9de555bb4ee196af06fe7c78e25[m
+Author: Positive-Conative <kyj970513@naver.com>
+Date:   Wed Mar 27 05:13:00 2019 +0900
+
+    [Add] Group 수정 부분 추가
+
+[33mcommit de68859c52d1191d3e30e16116abddc39d8aa8f7[m
+Author: Positive-Conative <kyj970513@naver.com>
+Date:   Tue Mar 26 05:13:00 2019 +0900
+
+    [Add] Group Add 부분 제작 완료
+
+[33mcommit ddde3edc2efa3e48bea6b137d3734c2b0af76eef[m
+Author: Positive-Conative <kyj970513@naver.com>
+Date:   Tue Feb 26 05:13:00 2019 +0900
+
+    [Add] Map 형식 추가]
+
+[33mcommit ddba591ff2bc19ec048cdd42683066625d7ed9e4[m
+Author: Positive-Conative <kyj970513@naver.com>
+Date:   Mon Mar 25 05:13:00 2019 +0900
+
+    [Add] 문자 체크 부분 필수값 체크 영역 추가 및 그룹 제작 준비
+
+[33mcommit a0026814a904c5d72559ac36b6c228784c9e0772[m
+Author: Positive-Conative <kyj970513@naver.com>
+Date:   Fri Feb 8 05:13:00 2019 +0900
+
+    [Modify] 카테고리 수정 부분 이름도 수정할 수 있게끔 변경
+
+[33mcommit 4caacff190e57f23ab891e94ac82d973b26b0c48[m
+Author: Positive-Conative <kyj970513@naver.com>
+Date:   Fri Feb 1 05:13:00 2019 +0900
+
+    [Add] 카테고리 수정 및 삭제 부분 추가
+
+[33mcommit 4a9c745be02934f4f6026c83414ffd6bebb74b7f[m
+Author: Positive-Conative <kyj970513@naver.com>
+Date:   Fri Jan 25 05:13:00 2019 +0900
+
+    [Add] 카테고리 전체 확인 및 if문 로직 추가
+
+[33mcommit c68ebe62cf2fdd2a91798777fd505ee677cbe1f5[m
+Author: Positive-Conative <kyj970513@naver.com>
+Date:   Thu Jan 17 05:13:00 2019 +0900
+
+    [Add] 카테고리 추가 및 정보 확인 부분 추가
+
+[33mcommit 8c5b68763fa96dbb0a458940d12701e0a8847d43[m
+Author: Positive-Conative <kyj970513@naver.com>
+Date:   Wed Jan 16 05:13:00 2019 +0900
+
+    [Add] Param check area 제작 완료
+
+[33mcommit aaa2bc7ca5adb5b3f8b685f8be4e204315639661[m
+Author: Positive-Conative <kyj970513@naver.com>
+Date:   Tue Jan 15 05:13:00 2019 +0900
+
+    [Modify] ERD 이름 재변경
+
+[33mcommit bce0acd1b83b02a918dcc9f0dcb1135ca74862fb[m
+Author: Positive-Conative <kyj970513@naver.com>
+Date:   Mon Feb 11 05:13:00 2019 +0900
+
+    [Add] Flow JPG 추가
+
+[33mcommit 9364f89648e7696573179aa4cbbb5b7567838d45[m
+Author: Positive-Conative <kyj970513@naver.com>
+Date:   Mon Feb 4 05:13:00 2019 +0900
+
+    [Modify] Check param 부분 수정 중
+
+[33mcommit 31460e877c22ca772362c0ccd31f9ec15e6d4a30[m
+Author: Positive-Conative <kyj970513@naver.com>
+Date:   Mon Jan 28 05:13:00 2019 +0900
+
+    [Add] Category router 추가
+
+[33mcommit c7a1ef576a3ed3d8b642a6ed3a53e76a99ef0a79[m
+Author: Positive-Conative <kyj970513@naver.com>
+Date:   Mon Jan 21 05:13:00 2019 +0900
+
+    [Check] User 부분 정상 작동 확인 완료
+
+[33mcommit ac8db12d37bcf57edac95a8b76b402f52154c15b[m
+Author: Positive-Conative <kyj970513@naver.com>
+Date:   Mon Jan 14 05:13:00 2019 +0900
+
+    [Test] Git branch test 2
+
+[33mcommit 063a040c0623f53d77bf226199af6f34c20001c3[m
+Author: Positive-Conative <kyj970513@naver.com>
+Date:   Wed Dec 8 22:05:24 2021 +0900
+
+    [Test] Git branch test
+
+[33mcommit 2744ef0f7eb58cb6b3e1c5feddec9db5883e90d9[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m
+Author: Positive-Conative <kyj970513@naver.com>
+Date:   Wed Dec 8 22:02:44 2021 +0900
+
+    [Restart] Setting
