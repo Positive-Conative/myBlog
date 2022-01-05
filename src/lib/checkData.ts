@@ -6,7 +6,7 @@
  * @returns True - 통과 / FALSE - 에러
  */
 
-function chkData(bodyData: any, checkOptions: any) {
+function checkData(bodyData: any, checkOptions: any) {
     const chkArr: Array<string> = Object.keys(checkOptions);
 
     for(const checkItem of chkArr) {
@@ -137,4 +137,4 @@ function specialCharCheck(str: string) {
     return true;
 }
 
-export default chkData;
+export default checkData;

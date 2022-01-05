@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import chkData from '../lib/chkData';
+import chkData from '../lib/checkData';
 import { userRepo } from '../models/repository/userRepo';
 
 import {
