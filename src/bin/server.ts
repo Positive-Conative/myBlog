@@ -5,9 +5,13 @@ import { createConnection, QueryFailedError } from 'typeorm';
 
 (async () =>{
     try {
-        await createConnection();
+        // set typeorm
+        await createConnection().catch(err=>{
+            console.log("Catched err", err);
+        });
+
         app.listen(process.env.SERVER_PORT, ()=>{
-            console.log("SERVER RUN")
+            console.log("SERVER RUN");
         })
     } catch (err) {
         console.log("DB CONNECTION ERROR : ", err);

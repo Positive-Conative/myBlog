@@ -1,10 +1,10 @@
-import express, { Router } from 'express';
-const router: Router = express.Router();
+// import express, { Router } from 'express';
+// const router: Router = express.Router();
 
-import { mainBoard } from '../controllers/indexController';
+// import { mainBoard } from '../controllers/indexController';
 
-// index Router start
-router.get('/', mainBoard);
+// // index Router start
+// router.get('/', mainBoard);
 
-export default router;
+// export default router;
 

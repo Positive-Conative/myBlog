@@ -1,9 +1,9 @@
-import { Request, Response, NextFunction } from 'express';
+// import { Request, Response, NextFunction } from 'express';
 
-const indexController = {
-    mainBoard(req: Request, res: Response) {
-        res.send("This is main.");
-    }
-}
+// const indexController = {
+//     mainBoard(req: Request, res: Response) {
+//         res.send("This is main.");
+//     }
+// }
 
-export = indexController;
+// export = indexController;

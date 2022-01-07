@@ -2,19 +2,17 @@ import express, { Router } from 'express';
 const router: Router = express.Router();
 
 import authController from '../controllers/authController';
-// import { addUser } from '../controllers/authController';
-
-
-// 회원가입
-router.post('/signUp', authController.addUser);
 
 // 가입된 유저 확인
-router.post('/check', authController.getUserInfo);
+router.get('/one/:userId', authController.getUserInfo);
 
-// 유저 상태 변경
-router.delete('/state', authController.setUserFlag);
+// 회원가입
+router.post('/signup', authController.addUser);
 
 // 유저 정보 수정
-router.put('/modify', authController.modifyUser);
+router.put('/:userId', authController.modifyUser);
+
+// 유저 상태 변경 (삭제 / 휴면)
+router.delete('/:userId', authController.setUserFlag);
 
 export default router;

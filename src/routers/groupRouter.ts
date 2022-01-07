@@ -7,12 +7,12 @@ import groupController from '../controllers/groupController';
 router.post('/add', groupController.addGroup);
 
 // 그룹 정보 확인
-router.post('/check', groupController.getGroupInfo);
+router.post('/one', groupController.getGroupInfo);
 
 // 그룹 상태 변경
-router.delete('/state', groupController.setGroupFlag);
+router.delete('/delete', groupController.setGroupFlag);
 
-// 유저 정보 수정
+// 그룹 정보 수정
 router.put('/modify', groupController.modifyGroup);
 
 export default router; 
