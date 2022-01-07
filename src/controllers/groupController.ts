@@ -12,7 +12,7 @@ import {
  
 const cRepo = new categoryRepo();
 const gRepo = new groupRepo(); 
-
+ 
 const groupController = {
     // 그룹 추가
     addGroup: async (req: Request, res: Response, next: NextFunction) => {
