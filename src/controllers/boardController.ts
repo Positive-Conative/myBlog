@@ -19,81 +19,81 @@ const aRepo = new userRepo();
 
 const boardController = {
     // 게시글 추가
-    addBoard: async (req: Request, res: Response, next: NextFunction) => {
-        const bodyData: addBoardDto = {
-            group:      { "g_name": req.body.groupName || '' },
-            user:       { "u_email": req.body.userEmail || '' },
-            b_title:    req.body.title,
-            b_content:  req.body.content,
-            b_flag:     0,
-        }
+    // addBoard: async (req: Request, res: Response, next: NextFunction) => {
+    //     const bodyData: addBoardDto = {
+    //         group:      { "g_name": req.body.groupName || '' },
+    //         user:       { "u_email": req.body.userEmail || '' },
+    //         b_title:    req.body.title,
+    //         b_content:  req.body.content,
+    //         b_flag:     0,
+    //     }
 
-        // 파라미터 Check
-        if (chkData(bodyData, boardVarOpt) === false) {
-            return next('API002');
-        }
+    //     // 파라미터 Check
+    //     if (chkData(bodyData, boardVarOpt) === false) {
+    //         return next('API002');
+    //     }
 
-        // 유저 존재 여부 확인
-        if (! await aRepo.findUserOne(bodyData.user.u_email)) {
-            return next('API200');
-        }
+    //     // 유저 존재 여부 확인
+    //     if (! await aRepo.findUserOne(bodyData.user.u_email)) {
+    //         return next('API200');
+    //     }
 
-        // 그룹 존재 여부 확인
-        if (! await gRepo.getGroupOne(bodyData.group.g_name)) {
-            return next('API201');
-        }
+    //     // 그룹 존재 여부 확인
+    //     if (! await gRepo.getGroupOne(bodyData.group.g_name)) {
+    //         return next('API201');
+    //     }
 
-        await bRepo.addBoard(bodyData);
-        return res.json({ "message": "처리 완료!" });
-    },
+    //     await bRepo.addBoard(bodyData);
+    //     return res.json({ "message": "처리 완료!" });
+    // },
 
-    getBoardInfo: async (req: Request, res: Response, next: NextFunction) => {
-        const bodyData: boardKeyDto = {
-            b_idx : parseInt(req.params.b_idx, 10) || -1
-        };
+    // getBoardInfo: async (req: Request, res: Response, next: NextFunction) => {
+    //     const bodyData: boardKeyDto = {
+    //         b_idx : parseInt(req.params.b_idx, 10) || -1
+    //     };
 
-        // 파라미터 Check
-        if (chkData(bodyData, boardVarOpt) === false) {
-            return next('API002');
-        }
+    //     // 파라미터 Check
+    //     if (chkData(bodyData, boardVarOpt) === false) {
+    //         return next('API002');
+    //     }
 
-        // Board 찾을 수 있는지 확인
-        const result = await bRepo.findBoardOne(bodyData.b_idx);
-        if(result === undefined) {  
-            return next('API202');
-        }
+    //     // Board 찾을 수 있는지 확인
+    //     const result = await bRepo.findBoardOne(bodyData.b_idx);
+    //     if(result === undefined) {  
+    //         return next('API202');
+    //     }
 
-        // 게시물 플래그에 따른 Switch
-        switch(result.flag) {
-            case 0:     // 정상
-                delete result.flag;
-                return res.json({result, "message": "정상적으로 조회되었습니다."});
+    //     // 게시물 플래그에 따른 Switch
+    //     switch(result.flag) {
+    //         case 0:     // 정상
+    //             delete result.flag;
+    //             return res.json({result, "message": "정상적으로 조회되었습니다."});
             
-            case 1:     // 삭제된
-                return next('API302');
-        }
+    //         case 1:     // 삭제된
+    //             return next('API302');
+    //     }
         
-    },
+    // },
 
-    setBoardFlag: async (req: Request, res: Response, next: NextFunction) => {
-        const bodyData : setBoardFlagDto = {
-            b_idx: req.body.idx,
-            b_flag: req.body.state,
-        }
+    // setBoardFlag: async (req: Request, res: Response, next: NextFunction) => {
+    //     const bodyData : setBoardFlagDto = {
+    //         b_idx: req.body.idx,
+    //         b_flag: req.body.state,
+    //     }
 
-        // 파라미터 Check
-        if (chkData(bodyData, boardVarOpt) === false) {
-            return next('API002');
-        }
+    //     // 파라미터 Check
+    //     if (chkData(bodyData, boardVarOpt) === false) {
+    //         return next('API002');
+    //     }
 
-        // Board 존재 여부 확인
-        if(! await bRepo.findBoardOne(bodyData.b_idx)) {  
-            return next('API202');
-        }
+    //     // Board 존재 여부 확인
+    //     if(! await bRepo.findBoardOne(bodyData.b_idx)) {  
+    //         return next('API202');
+    //     }
 
-        await bRepo.modifyBoardFlag(bodyData);
-        res.json({"message": "정상적으로 처리되었습니다."});
-    },
+    //     await bRepo.modifyBoardFlag(bodyData);
+    //     res.json({"message": "정상적으로 처리되었습니다."});
+    // },
 
     // modifyBoard: async (req: Request, res: Response, next: NextFunction) => {
     //     const bodyData: modifyBoardDto = {

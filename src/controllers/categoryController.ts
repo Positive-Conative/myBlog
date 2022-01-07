@@ -64,7 +64,7 @@ const categoryController = {
     // 수정
     modifyCategory: async(req: Request, res: Response, next: NextFunction) => {
         const bodyData: modifyCategoryDto = {
-            c_idx       : parseInt(req.params.c_idx, 10) || -1,
+            c_idx       : parseInt(req.params.categoryIdx, 10) || -1,
             c_name      : req.body.categoryName,
             c_memo      : req.body.categoryMemo,
         };
@@ -95,7 +95,7 @@ const categoryController = {
     // 삭제 (flag 있을 필요 X)
     deleteCategory: async(req: Request, res: Response, next: NextFunction) => {
         const bodyData: categoryKeyDto = {
-            c_idx : parseInt(req.params.c_idx, 10) || -1,
+            c_idx : parseInt(req.params.categoryIdx, 10) || -1,
         };
 
         // 파라미터 체크
