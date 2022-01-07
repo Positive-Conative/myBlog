@@ -67,7 +67,6 @@ const categoryController = {
             c_idx       : parseInt(req.params.c_idx, 10) || -1,
             c_name      : req.body.categoryName,
             c_memo      : req.body.categoryMemo,
-            c_newName   : req.body.newName,
         };
 
         // 파라미터 체크
@@ -75,14 +74,15 @@ const categoryController = {
             return next('API002');
         };
 
-        // 존재 여부 확인
-        if(! await cRepo.getCategoryOne({c_name: bodyData.c_name})) {
+        // 존재 여부 확인 (idx)
+        const result = await cRepo.getCategoryOne({c_idx: bodyData.c_idx});
+        if(! result) {
             return next('API203');
         }
 
-        // 새로운 이름으로 변경하기로 했다면, 중복 없는지 확인
-        if(bodyData.c_name !== bodyData.c_newName) {
-            if(await cRepo.getCategoryOne({c_name: bodyData.c_newName})) {
+        // 이름 변경 시 해당 이름 중복 확인
+        if(result.name !== bodyData.c_name) {
+            if(await cRepo.getCategoryOne({c_name: bodyData.c_name})) {
                 return next('API102');
             }
         }

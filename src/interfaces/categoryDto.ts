@@ -5,7 +5,6 @@ export interface addCategoryDto {
 
 export interface modifyCategoryDto {
     c_idx :     number;
-    c_newName:  string;
     c_name:     string;
     c_memo:     string;
 }
@@ -26,12 +25,6 @@ export const categoryVarOpt = {
         min_size:       0,
     },
     c_name: {
-        type:           'string',
-        min_size:       2,
-        max_size:       20,
-        blok_special:   true
-    },
-    c_newName: {
         type:           'string',
         min_size:       2,
         max_size:       20,
