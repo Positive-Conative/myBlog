@@ -3,16 +3,16 @@ const router: Router = express.Router();
 
 import groupController from '../controllers/groupController';
 
+// 그룹 정보 확인
+router.get('/one/:groupIdx', groupController.getGroupInfo);
+
 // 그룹 추가
 router.post('/add', groupController.addGroup);
 
-// 그룹 정보 확인
-router.post('/one', groupController.getGroupInfo);
-
 // 그룹 상태 변경
-router.delete('/delete', groupController.setGroupFlag);
+router.delete('/:groupIdx', groupController.setGroupFlag);
 
 // 그룹 정보 수정
-router.put('/modify', groupController.modifyGroup);
+router.put('/:groupIdx', groupController.modifyGroup);
 
-export default router; 
+export default router;
