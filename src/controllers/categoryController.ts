@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { categoryRepo } from '../models/repository/categoryRepo';
-import chkData from '../lib/chkData';
+import chkData from '../lib/checkData';
 
 import { 
     addCategoryDto,

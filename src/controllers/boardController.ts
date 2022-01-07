@@ -4,7 +4,7 @@ import { groupRepo } from '../models/repository/groupRepo';
 import { userRepo } from '../models/repository/userRepo';
 // import { boardGroupRepo } from '../models/repository/map-board-group';
 // import chkData from '../lib/chkData';
-import chkData from '../lib/chkData';
+import chkData from '../lib/checkData';
 import {
     addBoardDto,
     boardKeyDto,
