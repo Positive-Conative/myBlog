@@ -6,7 +6,7 @@ import chkData from '../lib/checkData';
 import {
     addGroupDto,
     groupKeyDto,
-    modifyGroupDto,
+    setgroupFlagDto,
     groupVarOpt
 } from '../interfaces/groupDto';
 
@@ -68,24 +68,25 @@ const groupController = {
         return res.json({ result, "message": "정상적으로 조회되었습니다." });
     },
 
-    // setGroupFlag: async (req: Request, res: Response, next: NextFunction) => {
-    //     const bodyData: groupKeyDto = {
-    //         g_name: req.body.groupName
-    //     }
+    setGroupFlag: async (req: Request, res: Response, next: NextFunction) => {
+        const bodyData: setgroupFlagDto = {
+            g_idx: parseInt(req.params.groupIdx, 10) || -1,
+            g_flag: req.body.state || -1,
+        };
 
-    //     // 잘못된 파라미터?
-    //     if (chkData(bodyData, groupVarOpt) === false) {
-    //         return next('API002');
-    //     }
+        // 잘못된 파라미터?
+        if (chkData(bodyData, groupVarOpt) === false) {
+            return next('API002');
+        }
 
-    //     // 그룹 찾을 수 있는지 확인
-    //     if (await gRepo.getGroupOne(bodyData.g_name) === undefined) {
-    //         return next('API201');
-    //     }
+        // 그룹 찾을 수 있는지 확인
+        if (await gRepo.getGroupOne({g_idx:bodyData.g_idx}) === undefined) {
+            return next('API201');
+        }
 
-    //     await gRepo.setGroupFlag(bodyData);
-    //     return res.json({ "message": "정상적으로 처리되었습니다." });
-    // },
+        await gRepo.setGroupFlag(bodyData);
+        return res.json({ "message": "정상적으로 처리되었습니다." });
+    },
 
     // modifyGroup: async(req: Request, res: Response, next: NextFunction) => {
     //     const bodyData: modifyGroupDto = {

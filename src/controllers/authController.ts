@@ -72,8 +72,8 @@ const authController = {
 
     setUserFlag: async (req: Request, res: Response, next: NextFunction) => {
         const bodyData : setAuthFlagDto = {
-            u_email: req.params.userId,
-            u_flag:  req.body.state,
+            u_email: req.params.userId || '',
+            u_flag:  req.body.state || -1,
         }
 
         // 파라미터 체크

@@ -12,6 +12,11 @@ export interface modifyGroupDto {
     g_memo:     string;
 }
 
+export interface setgroupFlagDto {
+    g_idx:  number;
+    g_flag: number;
+}
+
 export interface groupKeyDto {
     g_idx?:     number;
     g_name?:    string;
