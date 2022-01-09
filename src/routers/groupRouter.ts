@@ -13,6 +13,6 @@ router.post('/add/:categoryIdx', groupController.addGroup);
 router.delete('/:groupIdx', groupController.setGroupFlag);
 
 // 그룹 정보 수정
-// router.put('/:groupIdx', groupController.modifyGroup);
+router.put('/:groupIdx', groupController.modifyGroup);
 
 export default router;

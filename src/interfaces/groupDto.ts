@@ -7,7 +7,7 @@ export interface addGroupDto {
 
 export interface modifyGroupDto {
     category:   { c_idx: number };
-    g_newName:  string;
+    g_idx:      number;
     g_name:     string;
     g_memo:     string;
 }
