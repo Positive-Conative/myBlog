@@ -76,7 +76,7 @@ const categoryController = {
 
         // 존재 여부 확인 (idx)
         const result = await cRepo.getCategoryOne({c_idx: bodyData.c_idx});
-        if(! result) {
+        if(!result) {
             return next('API203');
         }
 
