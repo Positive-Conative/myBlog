@@ -47,33 +47,32 @@ const boardController = {
         return res.json({ "message": "처리 완료!" });
     },
 
-    // getBoardInfo: async (req: Request, res: Response, next: NextFunction) => {
-    //     const bodyData: boardKeyDto = {
-    //         b_idx : parseInt(req.params.b_idx, 10) || -1
-    //     };
+    getBoardInfo: async (req: Request, res: Response, next: NextFunction) => {
+        const bodyData: boardKeyDto = {
+            b_idx : parseInt(req.params.boardIdx, 10) || -1
+        };
 
-    //     // 파라미터 Check
-    //     if (chkData(bodyData, boardVarOpt) === false) {
-    //         return next('API002');
-    //     }
+        // 파라미터 Check
+        if (chkData(bodyData, boardVarOpt) === false) {
+            return next('API002');
+        }
 
-    //     // Board 찾을 수 있는지 확인
-    //     const result = await bRepo.findBoardOne(bodyData.b_idx);
-    //     if(result === undefined) {  
-    //         return next('API202');
-    //     }
+        // Board 찾을 수 있는지 확인
+        const result = await bRepo.findBoardOne({b_idx: bodyData.b_idx});
+        if(result === undefined) {  
+            return next('API202');
+        }
 
-    //     // 게시물 플래그에 따른 Switch
-    //     switch(result.flag) {
-    //         case 0:     // 정상
-    //             delete result.flag;
-    //             return res.json({result, "message": "정상적으로 조회되었습니다."});
+        // 게시물 플래그에 따른 Switch
+        switch(result.flag) {
+            case 0:     // 정상
+                delete result.flag;
+                return res.json({result, "message": "정상적으로 조회되었습니다."});
             
-    //         case 1:     // 삭제된
-    //             return next('API302');
-    //     }
-        
-    // },
+            case 1:     // 삭제된
+                return next('API302');
+        }
+    },
 
     // setBoardFlag: async (req: Request, res: Response, next: NextFunction) => {
     //     const bodyData : setBoardFlagDto = {

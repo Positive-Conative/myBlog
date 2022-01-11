@@ -3,11 +3,12 @@ const router: Router = express.Router();
 
 import boardController from '../controllers/boardController';
 
+// 게시글 확인
+router.get('/one/:boardIdx', boardController.getBoardInfo);
+
 // Board 추가
 router.post('/add/:groupIdx', boardController.addBoard);
 
-// 게시글 확인
-// router.get('/check/:b_idx', boardController.getBoardInfo);
 
 // // 게시글 상태 변경
 // router.delete('/state', boardController.setBoardFlag);
