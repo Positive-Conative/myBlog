@@ -1,5 +1,5 @@
 export interface addBoardDto {
-    group:     { g_name:  string };
+    group:     { g_idx:  number };
     user:      { u_email: string };
     b_title:   string;
     b_content: string;
@@ -21,13 +21,14 @@ export interface setBoardFlagDto {
 export const boardVarOpt = {
     group: {
         type:           'mapdata',
-        key:            'g_name',
-        min_size:       2,
-        max_size:       15,
+        mapType:        'number',
+        key:            'g_idx',
+        min_size:       0,
         blok_special:   true
     },
     user: {
         type:           'mapdata',
+        mapType:        'string',
         key:            'u_email',
         min_size:       2,
         max_size:       50,

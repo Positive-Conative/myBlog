@@ -33,6 +33,7 @@ export const groupVarOpt = {
     g_idx: {
         type:           'number',
         min_size:       0,
+        blok_special:   true
     },
     category: {
         type:           'mapdata',
