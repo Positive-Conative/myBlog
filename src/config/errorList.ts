@@ -97,9 +97,14 @@ module.exports = {
         "clientMsg": "휴면 계정입니다."
     },
     "API402": {
-        "code": "401",
+        "code": "402",
         "httpStatus": "404",
         "clientMsg": "탈퇴 예정 계정입니다."
+    },
+    "API403": {
+        "code": "403",
+        "httpStatus": "404",
+        "clientMsg": "본인이 작성한 글만 삭제할 수 있습니다."
     },
 
     // Server's ERR
