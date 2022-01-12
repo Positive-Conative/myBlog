@@ -22,7 +22,7 @@ const boardController = {
     // 게시글 추가
     addBoard: async (req: Request, res: Response, next: NextFunction) => {
         const bodyData: addBoardDto = {
-            group:      { "g_idx": parseInt(req.params.groupIdx, 10) || -1 },
+            group:      { "g_idx": parseInt(req.body.groupIdx, 10) || -1 },
             user:       { "u_email": req.body.userEmail || '' },
             b_title:    req.body.title,
             b_content:  req.body.content,
@@ -117,12 +117,12 @@ const boardController = {
 
         // Board 존재 여부 확인
         const result = await bRepo.findBoardOne({b_idx: bodyData.b_idx});
-        if(! result) {  
+        if (! result) {  
             return next('API202');
         }
 
         // 해당 사용자인지 확인
-        if(result.email !== bodyData.user.u_email) {
+        if (result.email !== bodyData.user.u_email) {
             return next('API403');
         }
 
