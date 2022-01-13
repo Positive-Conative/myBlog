@@ -134,6 +134,8 @@ const boardController = {
         // 수정
         await bRepo.modifyBoardInfo(bodyData);
         res.json({"message": "처리 완료!"});
+    },
+    getBoardNew: async (req: Request, res: Response, next: NextFunction) => {
 
     }
 }

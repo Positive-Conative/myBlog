@@ -6,6 +6,9 @@ import boardController from '../controllers/boardController';
 // 게시글 확인
 router.get('/one/:boardIdx', boardController.getBoardInfo);
 
+// 새 게시글 확인
+router.get('/new', boardController.getBoardNew);
+
 // Board 추가
 router.post('/add', boardController.addBoard);
 
