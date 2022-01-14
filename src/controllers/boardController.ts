@@ -135,8 +135,16 @@ const boardController = {
         await bRepo.modifyBoardInfo(bodyData);
         res.json({"message": "처리 완료!"});
     },
-    getBoardNew: async (req: Request, res: Response, next: NextFunction) => {
 
+    getBoardNew: async (req: Request, res: Response, next: NextFunction) => {
+        const bodyData: modifyBoardDto = {
+            group:      { "g_idx": parseInt(req.body.groupIdx, 10) || -1 },
+            user:       { "u_email": req.body.userEmail || '' },
+            b_idx:      parseInt(req.params.boardIdx, 10) || -1,
+            b_title:    req.body.title,
+            b_content:  req.body.content,
+            b_flag:     0,
+        }
     }
 }
 
