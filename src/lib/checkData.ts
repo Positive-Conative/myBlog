@@ -14,22 +14,22 @@ function checkData(bodyData: any, checkOptions: any) {
         let target = bodyData[checkItem];
         if(target === undefined) continue;    // 없는거니까 그냥 넘김
 
-        let selected = checkOptions[checkItem]; 
+        let selectedOption = checkOptions[checkItem]; 
         // Type check ==> Type 존재?
-        if(selected.hasOwnProperty('type') === true) {
-            let type = selected.type;
+        if(selectedOption.hasOwnProperty('type') === true) {
+            let type = selectedOption.type;
 
             // mapdata 형식
             if(type === 'mapdata') {
                 target = target[checkOptions[checkItem].key];
-                type = selected.mapType;
+                type = selectedOption.mapType;
             }
 
             // Min size check
-            if(selected.hasOwnProperty('min_size') === true) {
+            if(selectedOption.hasOwnProperty('min_size') === true) {
                 const options = {
                     type:       type, 
-                    size:       selected.min_size,
+                    size:       selectedOption.min_size,
                     data:       target,
                     separator:  'min',
                 };
@@ -41,10 +41,10 @@ function checkData(bodyData: any, checkOptions: any) {
             }
 
             // Max size check
-            if(selected.hasOwnProperty('max_size') === true) {
+            if(selectedOption.hasOwnProperty('max_size') === true) {
                 const options = {
                     type:       type, 
-                    size:       selected.max_size,
+                    size:       selectedOption.max_size,
                     data:       target,
                     separator:  'max',
                 };
@@ -56,7 +56,7 @@ function checkData(bodyData: any, checkOptions: any) {
             }
 
             // 특수문자 허용 여부 체크
-            if(selected.hasOwnProperty('blok_special') === true) {
+            if(selectedOption.hasOwnProperty('blok_special') === true) {
                 if(specialCharCheck(target) === false) {
                     console.log("특수문자 err", target);
                     return false;
@@ -64,15 +64,15 @@ function checkData(bodyData: any, checkOptions: any) {
             }
 
             // 꼭 포함해야 하는 것이 있나?
-            if(selected.hasOwnProperty('must_include') === true) {
-                if(target in [0, 1, 2] === false) {
+            if(selectedOption.hasOwnProperty('must_include') === true) {
+                if(selectedOption.must_include.indexOf(target) === -1) {
                     console.log("포함 값 err", target);
                     return false;
                 } 
             }
 
             // 이메일 형식?
-            if(selected.hasOwnProperty('type_email') === true) {
+            if(selectedOption.hasOwnProperty('type_email') === true) {
                 if(target.indexOf('@') === -1) {
                     console.log("이메일 err", target);
                     return false;
