@@ -72,12 +72,12 @@ export const boardVarOpt = {
     },
     standard: {
         type:           'number',
-        min_size:       0,
+        min_size:       -1,
         blok_special:   true
     },
     interval: {
         type:           'number',
-        min_size:       0,
+        must_include:   [3, 5, 10],
         blok_special:   true
     },
 }

@@ -10,6 +10,7 @@ import {
     boardKeyDto,
     setBoardFlagDto,
     modifyBoardDto,
+    newBoardDto,
     boardVarOpt
 } from '../interfaces/boardDto';
 
@@ -137,14 +138,19 @@ const boardController = {
     },
 
     getBoardNew: async (req: Request, res: Response, next: NextFunction) => {
-        const bodyData: modifyBoardDto = {
-            group:      { "g_idx": parseInt(req.body.groupIdx, 10) || -1 },
-            user:       { "u_email": req.body.userEmail || '' },
-            b_idx:      parseInt(req.params.boardIdx, 10) || -1,
-            b_title:    req.body.title,
-            b_content:  req.body.content,
-            b_flag:     0,
+        // 정녕 AS를 써야 하는가..
+        const bodyData: newBoardDto = {
+            standard: parseInt(req.query.standard as string, 10) || 0,
+            interval: parseInt(req.query.interval as string, 10) || 3
         }
+
+        // 파라미터 Check
+        if (chkData(bodyData, boardVarOpt) === false) {
+            return next('API002');
+        }
+
+        const result = await bRepo.getBoardNew(bodyData);
+        res.json({result, "message": "처리 완료!"});
     }
 }
 
