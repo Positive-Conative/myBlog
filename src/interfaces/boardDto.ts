@@ -24,6 +24,11 @@ export interface modifyBoardDto {
     b_flag:    number;
 }
 
+export interface newBoardDto {
+    standard:   number;
+    interval:   number;
+}
+
 
 // todo: 수정이 생길때마다 이렇게 일일히 수정해야하나.. 이걸 따로 한 파일에 모을까..
 // 우선 이렇게 작업하고 추후 생각해보기로..
@@ -63,6 +68,16 @@ export const boardVarOpt = {
     b_flag: {
         type:           'number',
         must_include:   [0, 1],
+        blok_special:   true
+    },
+    standard: {
+        type:           'number',
+        min_size:       0,
+        blok_special:   true
+    },
+    interval: {
+        type:           'number',
+        min_size:       0,
         blok_special:   true
     },
 }
