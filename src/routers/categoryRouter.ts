@@ -13,8 +13,7 @@ router.get('/all', categoryController.getCategoryList);
 router.post('/', categoryController.addCategory);
 
 // 카테고리 정보 수정
-// Typeorm 업그레이드, createForeignKeyConstraints 사용 가능하게 만들었는데.. 이슈있음.
-router.put('/:categoryName', categoryController.modifyCategory);
+router.put('/:c_idx', categoryController.modifyCategory);
 
 // 카테고리 정보 삭제
 router.delete('/:c_idx', categoryController.deleteCategory);
