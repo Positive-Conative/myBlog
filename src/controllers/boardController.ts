@@ -21,7 +21,7 @@ const aRepo = new userRepo();
 
 const boardController = {
     // 게시글 추가
-    addBoard: async (req: Request, res: Response, next: NextFunction) => {
+    async addBoard(req: Request, res: Response, next: NextFunction) {
         const bodyData: addBoardDto = {
             group:      { "g_idx": parseInt(req.body.groupIdx, 10) || -1 },
             user:       { "u_email": req.body.userEmail || '' },
@@ -49,7 +49,7 @@ const boardController = {
         return res.json({ "message": "처리 완료!" });
     },
 
-    getBoardInfo: async (req: Request, res: Response, next: NextFunction) => {
+    async getBoardInfo(req: Request, res: Response, next: NextFunction) {
         const bodyData: boardKeyDto = {
             b_idx : parseInt(req.params.boardIdx, 10) || -1
         };
@@ -76,7 +76,7 @@ const boardController = {
         }
     },
 
-    setBoardFlag: async (req: Request, res: Response, next: NextFunction) => {
+    async setBoardFlag(req: Request, res: Response, next: NextFunction) {
         const bodyData : setBoardFlagDto = {
             b_idx : parseInt(req.params.boardIdx, 10) || -1,
             b_flag: req.body.state,
@@ -96,7 +96,7 @@ const boardController = {
         res.json({"message": "정상적으로 처리되었습니다."});
     },
 
-    modifyBoard: async (req: Request, res: Response, next: NextFunction) => {
+    async modifyBoard(req: Request, res: Response, next: NextFunction) {
         const bodyData: modifyBoardDto = {
             group:      { "g_idx": parseInt(req.body.groupIdx, 10) || -1 },
             user:       { "u_email": req.body.userEmail || '' },
@@ -137,7 +137,7 @@ const boardController = {
         res.json({"message": "처리 완료!"});
     },
 
-    getBoardNew: async (req: Request, res: Response, next: NextFunction) => {
+    async getBoardNew(req: Request, res: Response, next: NextFunction) {
         // 정녕 AS를 써야 하는가..
         const bodyData: newBoardDto = {
             standard: parseInt(req.query.standard as string, 10) || 0,
