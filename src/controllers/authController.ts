@@ -13,7 +13,7 @@ import {
 const aRepo = new userRepo();
 const authController = {
     // 유저 추가
-    addUser: async (req: Request, res: Response, next: NextFunction) => {
+    async addUser(req: Request, res: Response, next: NextFunction) {
         const bodyData: addAuthDto = {
             u_email: req.body.userId,
             u_password: req.body.userPw,
@@ -37,7 +37,7 @@ const authController = {
         return res.json({ "message": "처리 완료!" });
     },
 
-    getUserInfo: async(req: Request, res: Response, next: NextFunction) => {
+    async getUserInfo(req: Request, res: Response, next: NextFunction) {
         const bodyData: authKeyDto = {
             u_email : req.params.userId
         };
@@ -70,7 +70,7 @@ const authController = {
         }
     },
 
-    setUserFlag: async (req: Request, res: Response, next: NextFunction) => {
+    async setUserFlag(req: Request, res: Response, next: NextFunction) {
         const bodyData : setAuthFlagDto = {
             u_email: req.params.userId || '',
             u_flag:  req.body.state || -1,
@@ -85,7 +85,7 @@ const authController = {
         return res.json({"message": "정상적으로 처리되었습니다."});        
     },
 
-    modifyUser: async (req: Request, res: Response, next: NextFunction) => {
+    async modifyUser(req: Request, res: Response, next: NextFunction) {
         const bodyData: modifyAuthDto = {
             u_email: req.params.userId,
             u_password: req.body.userPw,

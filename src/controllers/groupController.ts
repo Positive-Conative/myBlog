@@ -16,7 +16,7 @@ const gRepo = new groupRepo();
  
 const groupController = {
     // 그룹 추가
-    addGroup: async (req: Request, res: Response, next: NextFunction) => {
+    async addGroup(req: Request, res: Response, next: NextFunction) {
         const bodyData: addGroupDto = {
             category: { "c_idx": parseInt(req.body.categoryIdx, 10) || -1 },
             g_name: req.body.groupName,
@@ -43,7 +43,7 @@ const groupController = {
         return res.json({ "message": "처리 완료!" });
     },
 
-    getGroupInfo: async (req: Request, res: Response, next: NextFunction) => {
+    async getGroupInfo(req: Request, res: Response, next: NextFunction) {
         const bodyData: groupKeyDto = {
             g_idx: parseInt(req.params.groupIdx, 10) || -1,
         };
@@ -69,7 +69,7 @@ const groupController = {
         return res.json({ result, "message": "정상적으로 조회되었습니다." });
     },
 
-    setGroupFlag: async (req: Request, res: Response, next: NextFunction) => {
+    async setGroupFlag(req: Request, res: Response, next: NextFunction) {
         const bodyData: setgroupFlagDto = {
             g_idx: parseInt(req.params.groupIdx, 10) || -1,
             g_flag: req.body.state || -1,
@@ -89,7 +89,7 @@ const groupController = {
         return res.json({ "message": "정상적으로 처리되었습니다." });
     },
 
-    modifyGroup: async(req: Request, res: Response, next: NextFunction) => {
+    async modifyGroup(req: Request, res: Response, next: NextFunction) {
         const bodyData: modifyGroupDto = {
             category:   { "c_idx": parseInt(req.body.categoryIdx, 10) || -1 },
             g_idx:      parseInt(req.params.groupIdx, 10) || -1,

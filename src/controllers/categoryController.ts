@@ -13,7 +13,7 @@ const cRepo = new categoryRepo();
 const categoryController = {
 
     // 카테고리 추가
-    addCategory : async (req: Request, res: Response, next: NextFunction) => {
+    async addCategory(req: Request, res: Response, next: NextFunction) {
         const bodyData: addCategoryDto = {
             c_name : req.body.categoryName,
             c_memo : req.body.categoryMemo,
@@ -35,7 +35,7 @@ const categoryController = {
     },
 
     // 안쓸것 같지만 만들어둠 : 1개 조회 - 동일 이름의 카테고리 만들지?
-    getCategoryInfo : async (req: Request, res: Response, next: NextFunction) => {
+    async getCategoryInfo(req: Request, res: Response, next: NextFunction) {
         const bodyData: categoryKeyDto = {
             c_name : req.params.categoryName,
         };
@@ -55,14 +55,14 @@ const categoryController = {
     },
 
     // 전체 조회
-    getCategoryList : async (req: Request, res: Response, next: NextFunction) => {
+    async getCategoryList(req: Request, res: Response, next: NextFunction) {
         // ORM 실행 
         const result = await cRepo.getCategoryAll();
         return res.json({"message": "조회 완료!", result});
     },
 
     // 수정
-    modifyCategory: async(req: Request, res: Response, next: NextFunction) => {
+    async modifyCategory(req: Request, res: Response, next: NextFunction) {
         const bodyData: modifyCategoryDto = {
             c_idx       : parseInt(req.params.categoryIdx, 10) || -1,
             c_name      : req.body.categoryName,
@@ -93,7 +93,7 @@ const categoryController = {
     },
  
     // 삭제 (flag 있을 필요 X)
-    deleteCategory: async(req: Request, res: Response, next: NextFunction) => {
+    async deleteCategory(req: Request, res: Response, next: NextFunction) {
         const bodyData: categoryKeyDto = {
             c_idx : parseInt(req.params.categoryIdx, 10) || -1,
         };
